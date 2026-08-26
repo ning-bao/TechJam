@@ -20,6 +20,9 @@ Spec documents, in order of authority:
   `track5/pyproject.toml`. If you believe you need something else, report it;
   do not install it.
 - **Do not git init, commit, or push.** The orchestrator handles VCS.
+- **Never credit an AI as a commit co-author.** Do not add `Co-Authored-By:
+  Claude ...` (or any AI) trailers, or otherwise credit an AI tool, in commit
+  messages.
 - **Do not overthink.** Plain, minimal, working code beats clever code. No
   docstring essays. Comments only for non-obvious constraints.
 - **Use ENGLISH in ALL files.**
