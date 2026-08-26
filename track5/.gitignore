@@ -1,0 +1,12 @@
+data/raw/
+data/cache/
+data/derived/
+runs/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+*.pt
+*.pth
+*.ckpt

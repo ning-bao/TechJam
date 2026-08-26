@@ -1,0 +1,32 @@
+# Day-0 floor: frozen DINOv2+reg linear probe (PLAN D2). Cheap; every later
+# run must beat this.
+seed: 17
+data:
+  train_manifest: data/manifests/train.parquet
+  dev_manifest: data/manifests/dev.parquet
+  crop: 448
+  batch_size: 64
+  workers: 4
+model:
+  backbone: facebook/dinov2-with-registers-base
+  head: linear
+  pool: cls
+  pretrained: true
+  stub: false
+  freeze_backbone: true
+train:
+  epochs: 2
+  lr_head: 1.0e-3
+  lr_backbone: 0.0
+  weight_decay: 0.0
+  warmup_frac: 0.02
+  loss: bce
+  ema_decay: 0.999
+  swa: false
+  precision: bf16
+  grad_accum: 1
+distortion:
+  enabled: false
+eval:
+  every_steps: 200
+  worst_case_atoms: [clean, jpeg_30, blur_20, resize_025, noise_010]

@@ -1,0 +1,184 @@
+{
+ "benchmark": "dinov3_qualification",
+ "started_unix": 1787740315,
+ "environment": {
+  "hostname": "DESKTOP-2P15369",
+  "platform": "Windows-10-10.0.19044-SP0",
+  "python": "3.13.0",
+  "torch": "2.11.0+cu128",
+  "torch_cuda_runtime": "12.8",
+  "cudnn": 91900,
+  "driver": "591.74",
+  "cuda_available": true,
+  "cpu_count": 20,
+  "slurm": {},
+  "cuda_visible_devices": null,
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "vram_gib": 15.92,
+  "compute_capability": "12.0",
+  "multi_processor_count": 70,
+  "bf16_supported": true
+ },
+ "model": {
+  "requested": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "fallback": "facebook/dinov2-with-registers-large",
+  "resolved": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "params_total": 303130625,
+  "params_under_2b": true,
+  "pretrained": true,
+  "stub": false
+ },
+ "config": {
+  "model": {
+   "backbone": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+   "fallback_backbone": "facebook/dinov2-with-registers-large",
+   "head": "linear",
+   "pool": "cls",
+   "pretrained": true,
+   "stub": false,
+   "freeze_backbone": false
+  }
+ },
+ "config_hash": "f35a5a5d5d22",
+ "settings": {
+  "steps": 100,
+  "warmup_steps": 20,
+  "grad_accum": 1,
+  "seed": 17,
+  "device": "cuda",
+  "n_configs": 72,
+  "torch_compile": false,
+  "checkpointing_mode": "explicit",
+  "vram_headroom_pct": 90.0,
+  "n_configs_run": 2
+ },
+ "notes": [
+  "end-to-end rows use 256 synthetic 640px images (no --manifest given): decode+augment cost is real, image statistics are not"
+ ],
+ "results": [
+  {
+   "mode": "train",
+   "data_path": "compute_only_random_tensor",
+   "resolution": 512,
+   "precision": "bf16",
+   "micro_batch": 2,
+   "grad_accum": 1,
+   "effective_batch": 2,
+   "activation_checkpointing": false,
+   "workers": 0,
+   "escalate_ckpt": false,
+   "activation_checkpointing_applied": true,
+   "status": "ok",
+   "steps": 100,
+   "warmup_steps": 20,
+   "views_per_image": 1,
+   "step_time_s": {
+    "median": 0.138681,
+    "p95": 0.146638,
+    "mean": 0.139751,
+    "min": 0.137145,
+    "max": 0.14818
+   },
+   "data_time_s": {
+    "median": 2e-06,
+    "p95": 2e-06,
+    "mean": 2e-06,
+    "min": 1e-06,
+    "max": 5e-06
+   },
+   "images_per_s": {
+    "from_median_step": 14.422,
+    "from_total_window": 14.311
+   },
+   "total_window_s": 13.975,
+   "torch_compile": false,
+   "gpu_utilization": {
+    "available": true,
+    "n_samples": 55,
+    "interval_ms": 250,
+    "gpu_util_pct": {
+     "median": 95,
+     "mean": 95.1,
+     "min": 90,
+     "max": 97
+    },
+    "memory_util_pct": {
+     "median": 52,
+     "mean": 48.1,
+     "max": 55
+    },
+    "memory_used_mib": {
+     "median": 12146,
+     "max": 12441
+    }
+   },
+   "peak_allocated_gib": 6.119,
+   "peak_reserved_gib": 6.598,
+   "vram_total_gib": 15.92,
+   "peak_allocated_pct": 38.44,
+   "peak_reserved_pct": 41.44
+  },
+  {
+   "mode": "train",
+   "data_path": "compute_only_random_tensor",
+   "resolution": 512,
+   "precision": "fp16",
+   "micro_batch": 2,
+   "grad_accum": 1,
+   "effective_batch": 2,
+   "activation_checkpointing": false,
+   "workers": 0,
+   "escalate_ckpt": false,
+   "activation_checkpointing_applied": true,
+   "status": "ok",
+   "steps": 100,
+   "warmup_steps": 20,
+   "views_per_image": 1,
+   "step_time_s": {
+    "median": 0.142867,
+    "p95": 0.146344,
+    "mean": 0.143277,
+    "min": 0.140926,
+    "max": 0.151784
+   },
+   "data_time_s": {
+    "median": 1e-06,
+    "p95": 2e-06,
+    "mean": 1e-06,
+    "min": 1e-06,
+    "max": 2e-06
+   },
+   "images_per_s": {
+    "from_median_step": 13.999,
+    "from_total_window": 13.959
+   },
+   "total_window_s": 14.328,
+   "torch_compile": false,
+   "gpu_utilization": {
+    "available": true,
+    "n_samples": 57,
+    "interval_ms": 250,
+    "gpu_util_pct": {
+     "median": 95,
+     "mean": 94.7,
+     "min": 93,
+     "max": 96
+    },
+    "memory_util_pct": {
+     "median": 55,
+     "mean": 50.0,
+     "max": 59
+    },
+    "memory_used_mib": {
+     "median": 12098,
+     "max": 12465
+    }
+   },
+   "peak_allocated_gib": 6.119,
+   "peak_reserved_gib": 6.639,
+   "vram_total_gib": 15.92,
+   "peak_allocated_pct": 38.44,
+   "peak_reserved_pct": 41.7
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+[project]
+name = "track5"
+version = "0.1.0"
+description = "Track 5 — robust AIGC image detection under transforms"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+dependencies = [
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pillow",
+    "opencv-python-headless",
+    "imagehash",
+    "scikit-learn",
+    "pyyaml",
+    "tqdm",
+    "torch",
+    "torchvision",
+    # DINOv3ViT (the D1 primary backbone) landed in transformers 4.56; 5.15.1 is
+    # the version this repo is verified against. Upper bound keeps 5.16's model
+    # refactors out until they are re-tested.
+    "transformers>=5.15.1,<5.16",
+    "diffusers",
+    "accelerate",
+    "safetensors",
+    "datasets",
+    "pytest",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "gpu: needs a CUDA GPU (deselected in CI)",
+    "slow: long-running (deselected by default runs)",
+    "needs_weights: downloads pretrained weights",
+]
+addopts = "-m 'not gpu and not needs_weights'"

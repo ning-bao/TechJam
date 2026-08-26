@@ -1,0 +1,58 @@
+{
+ "benchmark": "dinov3_qualification",
+ "started_unix": 1787740213,
+ "environment": {
+  "hostname": "DESKTOP-2P15369",
+  "platform": "Windows-10-10.0.19044-SP0",
+  "python": "3.13.0",
+  "torch": "2.11.0+cu128",
+  "torch_cuda_runtime": "12.8",
+  "cudnn": 91900,
+  "driver": "591.74",
+  "cuda_available": true,
+  "cpu_count": 20,
+  "slurm": {},
+  "cuda_visible_devices": null,
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "vram_gib": 15.92,
+  "compute_capability": "12.0",
+  "multi_processor_count": 70,
+  "bf16_supported": true
+ },
+ "model": {
+  "requested": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "fallback": "facebook/dinov2-with-registers-large",
+  "resolved": "facebook/dinov2-with-registers-large",
+  "params_total": 304373761,
+  "params_under_2b": true,
+  "pretrained": true,
+  "stub": false
+ },
+ "config": {
+  "model": {
+   "backbone": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+   "fallback_backbone": "facebook/dinov2-with-registers-large",
+   "head": "linear",
+   "pool": "cls",
+   "pretrained": true,
+   "stub": false,
+   "freeze_backbone": false
+  }
+ },
+ "config_hash": "f35a5a5d5d22",
+ "settings": {
+  "steps": 100,
+  "warmup_steps": 20,
+  "grad_accum": 1,
+  "seed": 17,
+  "device": "cuda",
+  "n_configs": 72,
+  "torch_compile": false,
+  "checkpointing_mode": "explicit",
+  "vram_headroom_pct": 90.0
+ },
+ "notes": [
+  "end-to-end rows use 256 synthetic 640px images (no --manifest given): decode+augment cost is real, image statistics are not"
+ ],
+ "results": []
+}

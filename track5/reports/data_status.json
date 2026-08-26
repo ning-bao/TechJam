@@ -1,0 +1,49 @@
+{
+  "COCO": {
+    "files": 3,
+    "gb": 15.47,
+    "zips": {
+      "annotations_trainval2017.zip": "OK (6 members)",
+      "train2017.zip": "INCOMPLETE/downloading (BadZipFile)",
+      "val2017.zip": "OK (5001 members)"
+    }
+  },
+  "WildFake": {
+    "files": 43,
+    "gb": 27.82,
+    "families": {
+      "Diffusion_based": [
+        "DDIM.zip",
+        "DDPM.zip",
+        "Imagen.zip",
+        "SD"
+      ],
+      "Real": [
+        "afhq.zip",
+        "celebahq.zip",
+        "church.zip",
+        "ffhq.zip",
+        "imagenet.zip"
+      ]
+    },
+    "zips": {
+      "Images/Diffusion_based/DDIM.zip": "OK (65716 members)",
+      "Images/Diffusion_based/DDPM.zip": "OK (76565 members)",
+      "Images/Diffusion_based/Imagen.zip": "INCOMPLETE/downloading (BadZipFile)",
+      "Images/Diffusion_based/SD/SDwithAdaptor.zip": "INCOMPLETE/downloading (BadZipFile)",
+      "Images/Real/afhq.zip": "OK (31952 members)",
+      "Images/Real/celebahq.zip": "OK (30002 members)",
+      "Images/Real/church.zip": "OK (83355 members)",
+      "Images/Real/ffhq.zip": "OK (70002 members)",
+      "Images/Real/imagenet.zip": "OK (98791 members)"
+    }
+  },
+  "SID_Set": {
+    "files": 575,
+    "gb": 130.44,
+    "shards": 283,
+    "rows": 240000,
+    "bad_shards": 0
+  },
+  "_total_gb": 173.73
+}

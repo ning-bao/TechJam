@@ -1,0 +1,33 @@
+# ViT-B end-to-end fine-tune with D5 distortion sampler (PLAN D1/D2/D6).
+seed: 17
+data:
+  train_manifest: data/manifests/train.parquet
+  dev_manifest: data/manifests/dev.parquet
+  crop: 448
+  batch_size: 32
+  workers: 8
+model:
+  backbone: facebook/dinov2-with-registers-base
+  head: linear
+  pool: cls
+  pretrained: true
+  stub: false
+  freeze_backbone: false
+train:
+  epochs: 3
+  lr_head: 1.0e-3
+  lr_backbone: 2.0e-5
+  weight_decay: 0.05
+  warmup_frac: 0.05
+  loss: bce            # focal toggle: loss: focal (+ focal_gamma/focal_alpha)
+  focal_gamma: 2.0
+  focal_alpha: 0.5
+  ema_decay: 0.999
+  swa: false
+  precision: bf16
+  grad_accum: 2
+distortion:
+  enabled: true
+eval:
+  every_steps: 500
+  worst_case_atoms: [clean, jpeg_30, blur_20, resize_025, noise_010]

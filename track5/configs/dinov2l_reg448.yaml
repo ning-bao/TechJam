@@ -1,0 +1,39 @@
+# FALLBACK (PLAN D1 risk register): DINOv2-with-registers-L, Apache-2.0 and
+# ungated, so it can start before any DINOv3 gate approval lands and is the
+# artifact we submit if the track requires an OSI-licensed model (D12 Q5).
+# Identical recipe to configs/dinov3l512.yaml apart from backbone and crop.
+seed: 17
+data:
+  train_manifest: data/manifests/train.parquet
+  dev_manifest: data/manifests/dev.parquet
+  crop: 448
+  batch_size: 2
+  workers: 4
+model:
+  backbone: facebook/dinov2-with-registers-large
+  head: linear
+  pool: cls
+  pretrained: true
+  stub: false
+  freeze_backbone: false
+train:
+  epochs: 2
+  lr_head: 1.0e-3
+  lr_backbone: 1.0e-5
+  weight_decay: 0.05
+  warmup_frac: 0.05
+  loss: bce
+  focal_gamma: 2.0
+  focal_alpha: 0.5
+  ema_decay: 0.999
+  swa: false
+  precision: bf16
+  grad_accum: 8        # effective batch 16
+  activation_checkpointing: true
+  freeze_backbone: false
+distortion:
+  enabled: true
+eval:
+  every_steps: 500
+  dev_limit: 2000
+  worst_case_atoms: [clean, jpeg_30, blur_20, resize_025, noise_010]

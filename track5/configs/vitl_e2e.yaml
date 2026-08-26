@@ -1,0 +1,34 @@
+# ViT-L scale-up (PLAN D1). 16 GB VRAM ceiling on the 5070 Ti: batch 8 +
+# grad_accum 8 at 448px bf16; if OOM, drop data.crop to 336 (D6 fallback).
+seed: 17
+data:
+  train_manifest: data/manifests/train.parquet
+  dev_manifest: data/manifests/dev.parquet
+  crop: 448
+  batch_size: 8
+  workers: 8
+model:
+  backbone: facebook/dinov2-with-registers-large
+  head: linear
+  pool: cls
+  pretrained: true
+  stub: false
+  freeze_backbone: false
+train:
+  epochs: 2
+  lr_head: 1.0e-3
+  lr_backbone: 1.0e-5
+  weight_decay: 0.05
+  warmup_frac: 0.05
+  loss: bce
+  focal_gamma: 2.0
+  focal_alpha: 0.5
+  ema_decay: 0.999
+  swa: false
+  precision: bf16
+  grad_accum: 8
+distortion:
+  enabled: true
+eval:
+  every_steps: 500
+  worst_case_atoms: [clean, jpeg_30, blur_20, resize_025, noise_010]

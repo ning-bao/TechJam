@@ -1,0 +1,49 @@
+# PRIMARY (PLAN D1 + TC2 guide §1/§8): DINOv3-L/16 end-to-end at 512px.
+#
+# 512 is an exact multiple of the 16px patch — do NOT substitute 504 (TC2 §8);
+# valid nearby sizes are 384, 448, 480, 496, 512.
+#
+# `fallback_backbone` is the zero-friction lane: if the gated DINOv3 checkpoint
+# cannot be loaded (no gate approval, HF_HUB_OFFLINE with an empty cache) the
+# builder silently switches to DINOv2-with-registers-L and records which one it
+# resolved. The critical path never blocks on gate approval.
+#
+# batch_size/grad_accum below are the TC2 §8 starting point (micro-batch 1 +
+# activation checkpointing). Replace them with whatever the qualification
+# benchmark measured before launching a production segment.
+seed: 17
+data:
+  train_manifest: data/manifests/train.parquet
+  dev_manifest: data/manifests/dev.parquet
+  crop: 512
+  batch_size: 1
+  workers: 4
+model:
+  backbone: facebook/dinov3-vitl16-pretrain-lvd1689m
+  fallback_backbone: facebook/dinov2-with-registers-large
+  head: linear
+  pool: cls
+  pretrained: true
+  stub: false
+  freeze_backbone: false
+train:
+  epochs: 2
+  lr_head: 1.0e-3
+  lr_backbone: 1.0e-5
+  weight_decay: 0.05
+  warmup_frac: 0.05
+  loss: bce            # focal toggle: loss: focal (+ focal_gamma/focal_alpha)
+  focal_gamma: 2.0
+  focal_alpha: 0.5
+  ema_decay: 0.999
+  swa: false
+  precision: bf16      # bf16 -> fp16+GradScaler automatically if unsupported
+  grad_accum: 16       # effective batch 16
+  activation_checkpointing: true
+  freeze_backbone: false
+distortion:
+  enabled: true
+eval:
+  every_steps: 500
+  dev_limit: 2000      # 0 = whole dev manifest
+  worst_case_atoms: [clean, jpeg_30, blur_20, resize_025, noise_010]
