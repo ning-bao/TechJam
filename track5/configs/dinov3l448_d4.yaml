@@ -1,0 +1,51 @@
+# Day-2 production config: DINOv3-L/16 end-to-end at 448px on the D4-normalized
+# training set.
+#
+# Why 448 and not the 512 of dinov3l512.yaml: the training pool is filtered to
+# min(W,H) >= crop so that NOTHING is ever padded — padding only ever applies to
+# one class here, which would hand the model a free "padded => fake" rule. COCO
+# reals are overwhelmingly 640x480, so a 512 crop would pad them; 448 fits COCO
+# (480), WildFake sd/other (512) and SID_Set (1024) alike, and is a multiple of
+# the 16px patch. Rebuild the pool with --crop 512 before using the 512 config.
+#
+# batch_size/grad_accum come from the measured 72-config sweep
+# (reports/benchmark_full.json): 448px bf16 micro-batch 2 with activation
+# checkpointing ran 16.8 img/s at 5.7 GiB peak.
+seed: 17
+data:
+  train_manifest: data/manifests/train.parquet
+  dev_manifest: data/manifests/dev_eval2k.parquet
+  calib_manifest: data/manifests/calib.parquet
+  crop: 448
+  batch_size: 2
+  workers: 12
+  normalize: true      # PLAN D4 container normalization (track5.data.normalize)
+model:
+  backbone: facebook/dinov3-vitl16-pretrain-lvd1689m
+  fallback_backbone: facebook/dinov2-with-registers-large
+  head: linear
+  pool: cls
+  pretrained: true
+  stub: false
+  freeze_backbone: false
+train:
+  epochs: 2
+  lr_head: 1.0e-3
+  lr_backbone: 1.0e-5
+  weight_decay: 0.05
+  warmup_frac: 0.05
+  loss: bce
+  focal_gamma: 2.0
+  focal_alpha: 0.5
+  ema_decay: 0.999
+  swa: false
+  precision: bf16
+  grad_accum: 8        # effective batch 16
+  activation_checkpointing: true
+  freeze_backbone: false
+distortion:
+  enabled: true
+eval:
+  every_steps: 500
+  dev_limit: 2000
+  worst_case_atoms: [clean, jpeg_30, blur_20, resize_025, noise_010]
