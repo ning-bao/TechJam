@@ -51,7 +51,7 @@ class ManifestDataset(Dataset):
 
     def __init__(self, manifest_path, split: str | None = None, crop: int = 448,
                  distortion_sampler=None, seed: int = 17, data_root=None,
-                 train: bool = True):
+                 train: bool = True, normalize: bool = False):
         self.df = pd.read_parquet(manifest_path)
         if split is not None:
             self.df = self.df[self.df["split"] == split].reset_index(drop=True)
@@ -63,6 +63,7 @@ class ManifestDataset(Dataset):
         self.sampler = distortion_sampler
         self.seed = seed
         self.train = train
+        self.normalize = bool(normalize)
 
     def __len__(self):
         return len(self.df)
@@ -77,6 +78,12 @@ class ManifestDataset(Dataset):
         except Exception as e:
             print(f"[dataset] unreadable {row['path']}: {e}", file=sys.stderr)
             return self.__getitem__((idx + 1) % len(self))  # deterministic fallback
+        if self.normalize:
+            # PLAN D4: give both classes the same delivered-container statistics
+            # before any augmentation, so "PNG => fake" is not learnable.
+            from track5.data.normalize import normalize as normalize_container
+
+            img = normalize_container(img, row["sha256"], row["format"], self.seed)
         rng = np.random.Generator(np.random.PCG64(item_seed(row["sha256"], idx, self.seed)))
         if self.sampler is not None and self.train:
             img = self.sampler(img, rng)

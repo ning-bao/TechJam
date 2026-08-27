@@ -125,7 +125,8 @@ def main():
     sampler = TrainDistortionSampler() if cfg.get("distortion", {}).get("enabled", True) else None
     ds = ManifestDataset(REPO / cfg["data"]["train_manifest"], split="train",
                          crop=int(cfg["data"].get("crop", 448)),
-                         distortion_sampler=sampler, seed=int(cfg.get("seed", 17)))
+                         distortion_sampler=sampler, seed=int(cfg.get("seed", 17)),
+                         normalize=bool(cfg["data"].get("normalize", False)))
     workers = int(cfg["data"].get("workers", 0))
     from track5.data.sampler import seed_worker
 
