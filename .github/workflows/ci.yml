@@ -9,11 +9,17 @@ name: ci
 on: [push, pull_request]
 
 env:
-  # Keep uv on the CPU wheel index for torch/torchvision. Without this the
-  # `uv pip install -e .` step below re-resolves the bare `torch` dependency
-  # from pyproject.toml against PyPI, uninstalls the CPU build, and pulls the
-  # full CUDA stack instead — ~2GB of nvidia-* wheels this runner cannot use.
+  # Resolve torch/torchvision from the CPU wheel index. pyproject.toml declares
+  # a bare `torch`, which resolves to the CUDA build on PyPI: ~2GB of nvidia-*
+  # wheels this runner cannot use. Set here rather than in pyproject.toml so the
+  # training machine still gets its CUDA build.
   UV_TORCH_BACKEND: cpu
+  # `uv run` re-syncs the environment from pyproject.toml before running, and
+  # that sync does NOT honour UV_TORCH_BACKEND — it replaced the CPU build with
+  # the CUDA one ("Uninstalled 2 packages ... Installed 21 packages" in the run
+  # log, after `uv pip install -e .` had already installed 72 correctly). Use
+  # the environment the install step built instead of re-resolving it.
+  UV_NO_SYNC: "1"
 
 jobs:
   test:
