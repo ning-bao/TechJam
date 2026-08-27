@@ -60,7 +60,7 @@ Primary submission = single best calibrated model. Members added only past **gat
 - `transforms_eval` frozen Day 0: the 15 atoms (clean; JPEG 90/70/50/30; blur 0.5/1/2; resize 0.5/0.25×; noise .02/.05/.10; jitter ±20%; crop 80%), seeded, unit-tested for byte determinism, applied **identically to both classes with identical re-encode per condition**.
 - Matrix runner over cached transformed sets → per-condition AUROC / AP / bAcc@frozen-τ / FPR@95%TPR / ECE / Δclean, per-generator dev table, bootstrap 95% CIs, model+transform hashes in the CSV (§10.3–10.4).
 - **Dev-OOD:** held-out generator families + held-out real slices. **Shadow set:** WildFake DALL·E-*typical* (not Advanced) — queried max twice (Day 3, Day 5), logged, to keep C2 honest while getting a family-proximity read.
-- Crop-80% side-vs-area ambiguity: evaluate both, log the convention (§9.2 note).
+- Crop-80% convention: SIDE, confirmed (D12.2); `crop_80_area` remains an optional diagnostic.
 
 ### D10. Explainability & demo (judge-facing)
 Stability strip (p on clean / JPEG70 / 0.5×) + patch evidence map from real local logits + spectrum card — the two high-fidelity options in §12. Gradio app: upload → p(AIGC) + strip + map. Error-analysis notebook per §11.3 (≥12 FP + ≥12 FN, stratified, no cherry-picking). **No generated natural-language "reasons"** (§12: very low fidelity). The robustness-matrix heatmap + the bias-protocol story is the differentiator slide.
@@ -70,12 +70,13 @@ Repo code MIT (our code is not a derivative of DINO Materials; weights are runti
 **DINOv3 obligations (license read 2026-08-26):** it is a Llama-style community license — royalty-free, commercial use allowed, fine-tuning and redistribution of derivatives allowed. We must: (1) if we publish fine-tuned DINOv3 weights, distribute them **under the DINOv3 License with a copy of the agreement attached** — never relicense them MIT; (2) acknowledge DINOv3 use in any write-up (§1b.ii); (3) accept the indemnification clause (§5b) and Meta's unilateral-amendment right (§8) — negligible practical exposure at hackathon scale. The weights are **not OSI-open-source** (trade-control field-of-use restriction), which only matters if the track mandates OSI licensing → D12 Q5.
 Everything else on the critical path stays Apache/MIT (DINOv2+reg, SAFE, own code); never vendor B-Free weights or NC datasets.
 
-### D12. Questions to organisers (send Day 0, don't block on answers)
-1. Does <2B count full checkpoint, vision tower only, or ensemble total? (determines SigLIP2-Giant admissibility; we stay safe regardless)
-2. "Center crop 80%" — side or area?
-3. Are AI-restored/upscaled authentic photos "real"?
-4. Confirm the 8,843-file DALL·E Advanced manifest against the delivered folder (report open item 9) before freezing the denylist.
-5. Any license requirements on submitted models/weights (e.g. OSI-only)? A DINOv3-derived checkpoint carries Meta's community license (share-alike, non-OSI); if OSI is required we ship the DINOv2+reg model instead.
+### D12. Questions to organisers — ALL RESOLVED 2026-08-26 (nothing blocks on answers)
+1. **Parameter budget: <2B counts the full checkpoint.** We stay far under any counting rule; SigLIP2-Giant remains rejected (D1).
+2. **Center crop 80% = SIDE convention** (0.8 × each side). `crop_80` is the scored atom; `crop_80_area` is diagnostic-only.
+3. **Resize atoms = downscale 0.5×/0.25× then upscale back to the original size** (thumbnail round-trip, bicubic both ways) — implemented and frozen as eval_atoms v2.0.
+4. **Label policy — binary, two labels only** (submission `pred` = p(AIGC) forces this). Rule: *were the pixels generated, or merely processed?* Fully or partially generated content (incl. inpainting/tampering) → fake (1). Authentic captures with AI restoration/enhancement/upscaling → real (0), stated as a deployment assumption in the README. SID_Set class 2 (tampered) stays OUT of training (random crops make partial manipulations label noise); usable only as a held-out eval slice labeled fake. VAE recons stay fake in training (deliberate decoder-fingerprint device; named limitation in the README).
+5. **Protected-set counts confirmed by spec: 8,843 DALL·E Advanced + 4,998 COCO val2017 demo subset.** Our denylist matches 8,843 exactly (verified 8/26); val2017.zip CRC-clean.
+6. **No license requirements on submitted models/weights.** A DINOv3-derived checkpoint is admissible; distribute per Meta's community license obligations (D11).
 
 ---
 
@@ -132,7 +133,7 @@ Workstreams: **[D]**ata, **[M]**odel, **[E]**val/demo — parallelizable across 
 |---|---|
 | WildFake (ModelScope) slow/unreachable | Started Day 0 in background; fallbacks: SID_Set + D3 (MIT) + GenImage HF-streamed samples; last resort B-Free set (nonprofit license, use-only) |
 | GPU shortage / OOM at 504px | 336px fallback; Effort PEFT lane (0.19M trainable) |
-| DALL·E-Advanced manifest ≠ 8,843 files | Verify delivered folder before freezing denylist (organiser Q4) |
+| DALL·E-Advanced manifest ≠ 8,843 files | RESOLVED 8/26: spec confirms 8,843; denylist matches exactly |
 | Disk (<~200 GB needed) | Subset downloads, stream-and-sample, purge transform caches per model |
 | DINOv3 HF gate approval delayed | Start on DINOv2+reg (identical recipe, config-only swap); DINOv3 joins when granted — critical path never blocks |
 | Track rules require OSI-licensed submission | Ship the DINOv2+reg model (Apache-2.0 base) as the submitted artifact; DINOv3 stays a dev-side ensemble member or is dropped (D12 Q5) |
