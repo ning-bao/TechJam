@@ -23,6 +23,7 @@ def coco_val_rows(data_root: Path, workers: int) -> tuple[list, dict]:
     """(sha256, phash, reason) for every COCO val2017 image, straight from the zip.
     Also returns a coverage record: a partially hashed protected set is a silent
     C2 hole, so the caller refuses to write it by default."""
+    import threading
     import zipfile
     from concurrent.futures import ThreadPoolExecutor
     from io import BytesIO
@@ -31,6 +32,8 @@ def coco_val_rows(data_root: Path, workers: int) -> tuple[list, dict]:
     from PIL import Image
 
     from track5.utils.hashing import bytes_sha256
+
+    local = threading.local()
 
     zpath = data_root / "COCO" / "val2017.zip"
     if not zpath.exists():
@@ -53,8 +56,13 @@ def coco_val_rows(data_root: Path, workers: int) -> tuple[list, dict]:
     failed = []
 
     def one(info):
+        # one ZipFile per thread: a shared handle interleaves seeks and reports
+        # bogus CRC failures on an intact archive
+        z = getattr(local, "zf", None)
+        if z is None:
+            z = local.zf = zipfile.ZipFile(zpath, "r")
         try:
-            data = zf.read(info)
+            data = z.read(info)
             img = Image.open(BytesIO(data))
             img.load()
             return {"sha256": bytes_sha256(data),

@@ -102,7 +102,10 @@ def _iter_zip(data_root: Path, relzip: str, label: int, source: str, family_fn):
         if info.is_dir() or Path(info.filename).suffix.lower() not in IMG_EXTS:
             continue
         path = f"{relzip}#{info.filename}"
-        yield path, label, source, family_fn(path), lambda i=info, z=zf: z.read(i)
+        # read via resolve_image_bytes (per-thread handle), never the shared `zf`
+        # used for enumeration: the workers below are threads.
+        yield path, label, source, family_fn(path), (
+            lambda p=path: resolve_image_bytes(data_root, p))
 
 
 def _iter_wildfake_csv(data_root: Path, per_family_limit: int = 0,

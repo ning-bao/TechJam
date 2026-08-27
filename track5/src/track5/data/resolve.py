@@ -6,31 +6,41 @@ Path grammar (INTERFACES §4 extension):
   parquet row:  "SID_Set/data/train-00007-of-00283.parquet#123"  (HF image.bytes)
 """
 
+import threading
 import zipfile
 from pathlib import Path
 
-_ZIP_CACHE: dict = {}
-_PQ_CACHE: dict = {}
+# Handle caches MUST be per-thread. A ZipFile (and a pyarrow ParquetFile) owns
+# one file object with one seek position: sharing it across threads interleaves
+# seeks and returns wrong bytes, which surface as "Bad CRC-32" / "Overlapped
+# entries" on archives that are perfectly intact. Never make these module-level.
+_LOCAL = threading.local()
 
 
 def _zip_handle(abspath: Path) -> zipfile.ZipFile:
+    cache = getattr(_LOCAL, "zips", None)
+    if cache is None:
+        cache = _LOCAL.zips = {}
     key = str(abspath)
-    if key not in _ZIP_CACHE:
-        _ZIP_CACHE[key] = zipfile.ZipFile(abspath, "r")
-    return _ZIP_CACHE[key]
+    if key not in cache:
+        cache[key] = zipfile.ZipFile(abspath, "r")
+    return cache[key]
 
 
 def _parquet_handle(abspath: Path):
     import pyarrow.parquet as pq
 
+    cache = getattr(_LOCAL, "parquets", None)
+    if cache is None:
+        cache = _LOCAL.parquets = {}
     key = str(abspath)
-    if key not in _PQ_CACHE:
+    if key not in cache:
         f = pq.ParquetFile(abspath)
         offsets = [0]
         for i in range(f.metadata.num_row_groups):
             offsets.append(offsets[-1] + f.metadata.row_group(i).num_rows)
-        _PQ_CACHE[key] = (f, offsets)
-    return _PQ_CACHE[key]
+        cache[key] = (f, offsets)
+    return cache[key]
 
 
 def resolve_image_bytes(data_root, path: str) -> bytes:
