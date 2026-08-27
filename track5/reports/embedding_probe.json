@@ -1,0 +1,10 @@
+{
+ "label_all": 0.8996172686992302,
+ "label_matched": 0.9204252577319587,
+ "n_matched_pairs": 1552,
+ "real_source": 0.8293786658223627,
+ "fake_family": 0.8345323845032059,
+ "backbone": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+ "n_embedded": 7851,
+ "gate_bacc_metadata_probes": 0.6
+}
