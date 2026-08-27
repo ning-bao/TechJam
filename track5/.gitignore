@@ -10,3 +10,10 @@ __pycache__/
 *.pt
 *.pth
 *.ckpt
+
+# Derived bulk: manifests are large and fully regenerable from scripts/.
+# Their .receipt.json audit records ARE versioned (see !rule below).
+data/manifests/*.parquet
+!data/manifests/*.receipt.json
+# Transient run logs
+*.log
