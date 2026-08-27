@@ -1,0 +1,12 @@
+{
+ "source": "sid_set",
+ "rows": 79821,
+ "kept_by_label": {
+  "0": 40000,
+  "1": 40000
+ },
+ "skipped_below_min_side": 179,
+ "min_side": 448,
+ "unreadable": 0,
+ "unreadable_examples": []
+}

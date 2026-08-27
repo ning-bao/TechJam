@@ -1,0 +1,12 @@
+{
+ "source": "coco_train",
+ "rows": 118287,
+ "allow_missing": false,
+ "complete": true,
+ "limit": 0,
+ "per_family_limit": 0,
+ "csvs": null,
+ "requested_unavailable": 0,
+ "unreadable": 0,
+ "unreadable_examples": []
+}

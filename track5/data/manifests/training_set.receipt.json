@@ -1,0 +1,63 @@
+{
+ "crop": 448,
+ "seed": 17,
+ "raw_rows": 416093,
+ "denylist_hits": 0,
+ "dropped_below_crop": 186009,
+ "dropped_duplicates": 50,
+ "per_bucket_counts": {
+  "real:coco_train2017": 52270,
+  "fake:flux": 39990,
+  "real:sid_set": 39821,
+  "fake:vae_sd15": 24993,
+  "fake:vae_sdxl": 24993,
+  "fake:other": 20000,
+  "fake:sd": 19999,
+  "real:wildfake": 7968
+ },
+ "balanced": {
+  "real": 100059,
+  "fake": 100059
+ },
+ "content_groups": 161638,
+ "grouped_rows": 62128,
+ "train": {
+  "n": 160076,
+  "real": 80047,
+  "fake": 80029,
+  "by_family": {
+   "(0, '')": 80047,
+   "(1, 'flux')": 24628,
+   "(1, 'other')": 12317,
+   "(1, 'sd')": 12316,
+   "(1, 'vae_sd15')": 15392,
+   "(1, 'vae_sdxl')": 15376
+  }
+ },
+ "dev": {
+  "n": 20023,
+  "real": 10006,
+  "fake": 10017,
+  "by_family": {
+   "(0, '')": 10006,
+   "(1, 'flux')": 3079,
+   "(1, 'other')": 1540,
+   "(1, 'sd')": 1540,
+   "(1, 'vae_sd15')": 1924,
+   "(1, 'vae_sdxl')": 1934
+  }
+ },
+ "calib": {
+  "n": 20019,
+  "real": 10006,
+  "fake": 10013,
+  "by_family": {
+   "(0, '')": 10006,
+   "(1, 'flux')": 3079,
+   "(1, 'other')": 1540,
+   "(1, 'sd')": 1540,
+   "(1, 'vae_sd15')": 1924,
+   "(1, 'vae_sdxl')": 1930
+  }
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "real": 5000,
+ "fake": 8843,
+ "total": 13843,
+ "expected_real": 5000,
+ "expected_fake": 8843,
+ "counts_match": true,
+ "split": "protected",
+ "unreadable": 0,
+ "unreadable_examples": []
+}

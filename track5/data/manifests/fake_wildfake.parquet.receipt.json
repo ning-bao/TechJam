@@ -1,0 +1,71 @@
+{
+ "source": "wildfake_csv",
+ "rows": 119999,
+ "allow_missing": false,
+ "complete": false,
+ "limit": 0,
+ "per_family_limit": 20000,
+ "csvs": [
+  "adm.csv",
+  "ddim.csv",
+  "ddpm.csv",
+  "imagen.csv",
+  "mjv4.csv",
+  "mjv5.csv",
+  "SDwithAdaptor_controlnet.csv",
+  "SDwithAdaptor_lora.csv",
+  "SDwithAdaptor_lycris.csv",
+  "vqdm.csv",
+  "BigGAN.csv",
+  "DF-GAN.csv",
+  "GALIP.csv",
+  "GigaGAN.csv",
+  "VQGAN.csv",
+  "starGAN.csv",
+  "styleGAN.csv",
+  "MAE.csv",
+  "MAGE.csv",
+  "VQVAE.csv"
+ ],
+ "requested_unavailable": 438624,
+ "unreadable": 1,
+ "unreadable_examples": [
+  {
+   "path": "WildFake/Images/Diffusion_based/SD/SDwithAdaptor.zip#SDwithAdaptor/controlnet/type_controlnet/Chillout/7556.png",
+   "error": "OSError: image file is truncated"
+  }
+ ],
+ "kept": 120000,
+ "per_bucket": {
+  "adm": 20000,
+  "ddpm": 20000,
+  "gan": 20000,
+  "other": 20000,
+  "sd": 20000,
+  "vqdm": 20000
+ },
+ "protected_refused": {},
+ "missing_examples": [
+  "diffusion_based/midjourney/typical/mj_v4/0000475862586d699183f7755af9f8b8.png",
+  "diffusion_based/midjourney/typical/mj_v4/00005650722bcdd09beaeef4e50ac7fe.png",
+  "diffusion_based/midjourney/typical/mj_v4/0001304d553942c45e3fc287de79f7ca.png",
+  "diffusion_based/midjourney/typical/mj_v4/000187d63a3c7ee32667fcdd39ebcb91.png",
+  "diffusion_based/midjourney/typical/mj_v4/0001cc9117962dab7792f935a43400d8.png",
+  "diffusion_based/midjourney/typical/mj_v4/0001f20c2d68dda056e8226ecb534e12.png",
+  "diffusion_based/midjourney/typical/mj_v4/00021d5b15a5277f9f53e8d42d42f359.png",
+  "diffusion_based/midjourney/typical/mj_v4/00026660e25cf2e908d3637a4ccadef5.png",
+  "diffusion_based/midjourney/typical/mj_v4/0002691300aae991c27269a83e1d9968.png",
+  "diffusion_based/midjourney/typical/mj_v4/0002a50b95930cfe26146fd899a0588b.png",
+  "diffusion_based/midjourney/typical/mj_v4/000302d1b1b34cab42012e7c123edf21.png",
+  "diffusion_based/midjourney/typical/mj_v4/000323e137d5bc5ea1e7bbab81f97f89.png",
+  "diffusion_based/midjourney/typical/mj_v4/0003b4bff244e9700f770b0c0be79a83.png",
+  "diffusion_based/midjourney/typical/mj_v4/0003b7d870555477ef322a2e7854fb5c.png",
+  "diffusion_based/midjourney/typical/mj_v4/0004fd4913c8a0ee017e84cb5e0fe58a.png",
+  "diffusion_based/midjourney/typical/mj_v4/000506a4fe4d8c3311d58c0d96d89031.png",
+  "diffusion_based/midjourney/typical/mj_v4/00052945703f51a927983c076e13df38.png",
+  "diffusion_based/midjourney/typical/mj_v4/000692854a0ab65fa9274e2f9222eaae.png",
+  "diffusion_based/midjourney/typical/mj_v4/0006b7375dfa9702d40a0530eee92476.png",
+  "diffusion_based/midjourney/typical/mj_v4/0007143ac2faf2334e6fff3c066af85c.png"
+ ],
+ "unavailable_archives": []
+}

@@ -1,0 +1,9 @@
+{
+ "rows": 49986,
+ "unreadable": 0,
+ "by_family": {
+  "vae_sd15": 24993,
+  "vae_sdxl": 24993
+ },
+ "unreadable_examples": []
+}

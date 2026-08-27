@@ -1,0 +1,31 @@
+{
+ "source": "wildfake_csv",
+ "rows": 48000,
+ "allow_missing": false,
+ "complete": true,
+ "limit": 0,
+ "per_family_limit": 8000,
+ "csvs": [
+  "real_afhq.csv",
+  "real_celebahq.csv",
+  "real_church.csv",
+  "real_ffhq.csv",
+  "real_imagenet.csv",
+  "real_laion5b.csv"
+ ],
+ "requested_unavailable": 0,
+ "unreadable": 0,
+ "unreadable_examples": [],
+ "kept": 48000,
+ "per_bucket": {
+  "real:afhq": 8000,
+  "real:celebahq": 8000,
+  "real:church": 8000,
+  "real:ffhq": 8000,
+  "real:imagenet": 8000,
+  "real:laion5b": 8000
+ },
+ "protected_refused": {},
+ "missing_examples": [],
+ "unavailable_archives": []
+}
