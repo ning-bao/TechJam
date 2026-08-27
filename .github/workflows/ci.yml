@@ -1,0 +1,46 @@
+name: ci
+
+# This file must live in the REPOSITORY ROOT .github/workflows/. It previously
+# sat in track5/.github/workflows/, where GitHub never sees it: Actions only
+# reads workflows from the repository root, so no push or PR since the repo was
+# created ran any tests. The Python project is the track5/ subdirectory, so the
+# job sets working-directory instead of the workflow moving down into it.
+
+on: [push, pull_request]
+
+env:
+  # Resolve torch/torchvision from the CPU wheel index. pyproject.toml declares
+  # a bare `torch`, which resolves to the CUDA build on PyPI: ~2GB of nvidia-*
+  # wheels this runner cannot use. Set here rather than in pyproject.toml so the
+  # training machine still gets its CUDA build.
+  UV_TORCH_BACKEND: cpu
+  # `uv run` re-syncs the environment from pyproject.toml before running, and
+  # that sync does NOT honour UV_TORCH_BACKEND — it replaced the CPU build with
+  # the CUDA one ("Uninstalled 2 packages ... Installed 21 packages" in the run
+  # log, after `uv pip install -e .` had already installed 72 correctly). Use
+  # the environment the install step built instead of re-resolving it.
+  UV_NO_SYNC: "1"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: track5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - run: uv venv --python 3.13
+      - run: uv pip install -e .
+      # The lock records torch 2.11.0+cu128 — a CUDA local version that cannot
+      # exist on a CPU-only runner, so test_installed_environment_matches_the_lock
+      # can never pass here. Deselected rather than weakened: what the lock should
+      # assert on a non-CUDA machine is a call for whoever owns the reproducibility
+      # story, not something to settle in a workflow file. The other three
+      # environment-lock tests (fully-pinned, no editable path, transformers range)
+      # still run and are the ones that catch an unpinned or drifted lock.
+      - run: >
+          uv run pytest -q
+          --deselect tests/test_environment_lock.py::test_installed_environment_matches_the_lock
+  # NOTE: the D4 shortcut-probe gate (all 4 probes < 60% bAcc) runs locally on
+  # real manifests before any training run — it needs the data, not this runner.

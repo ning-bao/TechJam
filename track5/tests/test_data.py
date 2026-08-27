@@ -1,5 +1,6 @@
 import zipfile
 from io import BytesIO
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -164,9 +165,13 @@ def test_probe_gate_exit_codes(data_root, tmp_path, monkeypatch):
     df["split"] = "unassigned"
     p = tmp_path / "m.parquet"
     df.to_parquet(p)
+    # cwd must be derived, not hardcoded: this ran with cwd="F:/Hackathon/track5"
+    # and so could only ever pass on one machine — which meant the D4 gate, the
+    # one test that most needs to run everywhere, was the least portable one.
+    repo = Path(__file__).resolve().parents[1]
     res = subprocess.run(
         [_sys.executable, "scripts/probe_gate.py", "--manifest", str(p)],
-        capture_output=True, text=True, cwd="F:/Hackathon/track5")
+        capture_output=True, text=True, cwd=str(repo))
     assert res.returncode == 1
     df2 = _meta_df(planted_shortcut=False)
     df2["split"] = "unassigned"
@@ -174,7 +179,7 @@ def test_probe_gate_exit_codes(data_root, tmp_path, monkeypatch):
     df2.to_parquet(p2)
     res2 = subprocess.run(
         [_sys.executable, "scripts/probe_gate.py", "--manifest", str(p2)],
-        capture_output=True, text=True, cwd="F:/Hackathon/track5")
+        capture_output=True, text=True, cwd=str(repo))
     assert res2.returncode == 0, res2.stdout + res2.stderr
 
 
