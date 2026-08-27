@@ -1,9 +1,19 @@
 name: ci
+
+# This file must live in the REPOSITORY ROOT .github/workflows/. It previously
+# sat in track5/.github/workflows/, where GitHub never sees it: Actions only
+# reads workflows from the repository root, so no push or PR since the repo was
+# created ran any tests. The Python project is the track5/ subdirectory, so the
+# job sets working-directory instead of the workflow moving down into it.
+
 on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: track5
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v4
