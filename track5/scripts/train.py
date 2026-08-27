@@ -103,6 +103,9 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--device", default="auto")
     ap.add_argument("--max-steps", type=int, default=0)
+    ap.add_argument("--resume", default="none",
+                    help='"auto" (newest in <out>/checkpoints), "none", or a path')
+    ap.add_argument("--allow-config-change", action="store_true")
     args = ap.parse_args()
 
     import numpy as np
@@ -137,6 +140,10 @@ def main():
                         generator=torch.Generator().manual_seed(int(cfg.get("seed", 17))))
     eval_fn = make_eval_fn(cfg, device)
     trainer = Trainer(cfg, model, loader, eval_fn, args.out)
+    if args.resume != "none":
+        resumed = trainer.resume(args.resume,
+                                 allow_config_change=args.allow_config_change)
+        print(f"[train] resume={args.resume} -> {'resumed' if resumed else 'fresh start'}")
     best = trainer.train()
     print(f"done; best worst_case_bacc={best:.4f}; checkpoints in {args.out}")
 
