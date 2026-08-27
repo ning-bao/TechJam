@@ -46,7 +46,13 @@ def _parquet_handle(abspath: Path):
 def resolve_image_bytes(data_root, path: str) -> bytes:
     data_root = Path(data_root)
     if "#" not in path:
-        return (data_root / path).read_bytes()
+        direct = data_root / path
+        if direct.exists():
+            return direct.read_bytes()
+        # PLAN: manifest paths are relative to data/raw OR data/derived (VAE
+        # reconstructions, extracted shards). data/raw is read-only, so derived
+        # products live beside it.
+        return (data_root.parent / "derived" / path).read_bytes()
     base, frag = path.split("#", 1)
     abspath = data_root / base
     if base.lower().endswith(".zip"):
