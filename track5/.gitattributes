@@ -1,0 +1,12 @@
+# calibration_dca.R is authored and run on Windows and is checked in with CRLF.
+# Without this, line endings depend on each checkout's core.autocrlf: a clone on
+# Linux can normalise it to LF, and an edit committed from Linux drops the CRLF
+# for everyone. Pin it so the file on disk matches the file in the tree.
+#
+# R itself tolerates either ending. What it does not tolerate is a UTF-8 BOM on
+# line 1, where the parse error looks like an empty file rather than an encoding
+# problem — see analysis/README.md for the check.
+*.R text eol=crlf
+
+# Python stays LF everywhere, which is what every tool in this repo expects.
+*.py text eol=lf
