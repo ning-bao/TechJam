@@ -64,6 +64,7 @@ class ManifestDataset(Dataset):
         self.seed = seed
         self.train = train
         self.normalize = bool(normalize)
+        self.epoch = 0
 
     def __len__(self):
         return len(self.df)
@@ -84,7 +85,12 @@ class ManifestDataset(Dataset):
             from track5.data.normalize import normalize as normalize_container
 
             img = normalize_container(img, row["sha256"], row["format"], self.seed)
-        rng = np.random.Generator(np.random.PCG64(item_seed(row["sha256"], idx, self.seed)))
+        # Epoch salt on the augmentation RNG only, so a second pass draws fresh
+        # crops/distortions. normalize_container above keeps the unsalted seed:
+        # the delivered container is data definition, not augmentation. epoch 0
+        # reduces to self.seed, i.e. byte-identical to what is already trained.
+        aug_seed = self.seed + 1_000_003 * self.epoch
+        rng = np.random.Generator(np.random.PCG64(item_seed(row["sha256"], idx, aug_seed)))
         if self.sampler is not None and self.train:
             img = self.sampler(img, rng)
         img = train_crop(img, rng, self.crop) if self.train else eval_crop(img, self.crop)

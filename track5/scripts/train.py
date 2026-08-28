@@ -131,15 +131,28 @@ def main():
                          distortion_sampler=sampler, seed=int(cfg.get("seed", 17)),
                          normalize=bool(cfg["data"].get("normalize", False)))
     workers = int(cfg["data"].get("workers", 0))
-    from track5.data.sampler import seed_worker
+    from track5.data.sampler import EpochPermutationSampler, seed_worker
 
-    loader = DataLoader(ds, batch_size=int(cfg["data"].get("batch_size", 32)),
-                        shuffle=True, num_workers=workers, drop_last=True,
-                        persistent_workers=workers > 0, pin_memory=device == "cuda",
-                        worker_init_fn=seed_worker if workers > 0 else None,
-                        generator=torch.Generator().manual_seed(int(cfg.get("seed", 17))))
+    seed = int(cfg.get("seed", 17))
+
+    def make_loader(epoch: int, start_index: int):
+        # TC2 §10.4: order is a pure function of (seed, epoch). DataLoader's own
+        # shuffle would reseed from the config seed on every launch, so a resumed
+        # segment would replay the previous epoch's exact batch stream.
+        ds.epoch = epoch
+        return DataLoader(
+            ds, batch_size=int(cfg["data"].get("batch_size", 32)),
+            sampler=EpochPermutationSampler(len(ds), seed, epoch=epoch,
+                                            start_index=start_index),
+            num_workers=workers, drop_last=True, persistent_workers=False,
+            pin_memory=device == "cuda",
+            worker_init_fn=seed_worker if workers > 0 else None,
+            generator=torch.Generator().manual_seed(seed))
+
+    loader = make_loader(0, 0)
     eval_fn = make_eval_fn(cfg, device)
-    trainer = Trainer(cfg, model, loader, eval_fn, args.out)
+    trainer = Trainer(cfg, model, loader, eval_fn, args.out,
+                      loader_factory=make_loader)
     if args.resume != "none":
         resumed = trainer.resume(args.resume,
                                  allow_config_change=args.allow_config_change)
