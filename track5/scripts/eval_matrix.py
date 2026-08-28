@@ -34,6 +34,12 @@ def main():
     from track5.models.preprocess import eval_crop, to_tensor
     from track5.transforms.eval_atoms import ATOMS_VERSION, EVAL_15
     from track5.utils.hashing import file_sha256
+    from track5.utils.imaging import apply_decode_policy
+
+    # Camera originals routinely exceed PIL's default bomb guard (our own set A
+    # peaks at 103.8 MP); without this they warn, and would hard-fail under any
+    # warnings-as-errors setting.
+    apply_decode_policy()
 
     device = ("cuda" if torch.cuda.is_available() else "cpu") if args.device == "auto" else args.device
     ckpt = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
