@@ -75,16 +75,18 @@ def test_run_matrix_csv_and_cache(tmp_path, monkeypatch):
         from pathlib import Path
         d = Path(cache_dir) / atom
         d.mkdir(parents=True, exist_ok=True)
-        paths = []
+        cache_paths = []
         for r in manifest_df.itertuples(index=False):
             p = d / f"{r.sha256}.png"
             if not p.exists():
                 calls["transform"] += 1
                 p.write_bytes(b"x")
-            paths.append(str(p))
-        return paths, manifest_df["label"].to_numpy(), 0
+            cache_paths.append(str(p))
+        rows = manifest_df.copy()
+        rows["cache_path"] = cache_paths
+        return rows, []
 
-    monkeypatch.setattr(M, "prepare_atom_cache", fake_prepare)
+    monkeypatch.setattr(M, "prepare_atom_rows", fake_prepare)
     rng = np.random.Generator(np.random.PCG64(1))
     n = 40
     manifest = pd.DataFrame({
@@ -104,6 +106,13 @@ def test_run_matrix_csv_and_cache(tmp_path, monkeypatch):
     assert got.loc[0, "delta_clean_bacc"] == 0.0
     first = calls["transform"]
     assert first == 2 * n
+    items = pd.read_parquet(M.items_path(out))
+    assert list(items.columns) == ["path", "label", "score", "condition"]
+    assert len(items) == 2 * n
+    assert set(items["condition"]) == {"clean", "jpeg_30"}
+    joined = items.merge(manifest[["path", "label"]], on="path",
+                         suffixes=("", "_manifest"))
+    assert (joined["label"] == joined["label_manifest"]).all()
     M.run_matrix(manifest, score_fn, ["jpeg_30", "clean"], tmp_path / "cache",
                  17, 0.5, out, meta)
     assert calls["transform"] == first  # cache reused, no recompute

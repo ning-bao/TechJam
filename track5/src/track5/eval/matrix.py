@@ -25,6 +25,11 @@ def _cache_ext(atom: str) -> str:
     return "jpg" if atom.startswith("jpeg_") else "png"
 
 
+def items_path(out_csv) -> Path:
+    """Per-item scores parquet written beside an aggregate matrix CSV."""
+    return Path(out_csv).with_suffix(".items.parquet")
+
+
 def prepare_atom_rows(manifest_df, atom: str, cache_dir, data_root, global_seed: int):
     """Transform+cache every manifest row for one atom.
 
@@ -70,19 +75,31 @@ def prepare_atom_cache(manifest_df, atom: str, cache_dir, data_root, global_seed
 
 def run_matrix(manifest_df, score_fn, atoms, cache_dir, global_seed: int,
                threshold: float, out_csv, meta: dict) -> pd.DataFrame:
-    """meta needs: data_root, model_hash, config_hash, atoms_version."""
+    """meta needs: data_root, model_hash, config_hash, atoms_version.
+
+    Besides the aggregate CSV, writes (path, label, score, condition) for every
+    scored item to items_path(out_csv), so per-item questions (signed ECE,
+    per-generator error rates, worst false positives) never need a fresh
+    inference pass.
+    """
     atoms = list(atoms)
     if "clean" in atoms:  # clean first so delta_clean_bacc is computable
         atoms.remove("clean")
         atoms.insert(0, "clean")
-    rows, clean_bacc = [], float("nan")
+    rows, item_frames, clean_bacc = [], [], float("nan")
     for atom in atoms:
-        paths, labels, skipped = prepare_atom_cache(
+        arows, errors = prepare_atom_rows(
             manifest_df, atom, cache_dir, meta["data_root"], global_seed)
-        if not paths:
+        skipped = len(errors)
+        if not len(arows):
             print(f"[matrix] no usable images for atom {atom}", file=sys.stderr)
             continue
+        paths = list(arows["cache_path"])
+        labels = arows["label"].to_numpy(dtype=int)
         scores = np.asarray(score_fn(paths), dtype=np.float64)
+        item_frames.append(pd.DataFrame({
+            "path": arows["path"].to_numpy(), "label": labels,
+            "score": scores, "condition": atom}))
         m = all_metrics(labels, scores, threshold)
         if atom == "clean":
             clean_bacc = m["bacc"]
@@ -101,4 +118,7 @@ def run_matrix(manifest_df, score_fn, atoms, cache_dir, global_seed: int,
     out_csv = Path(out_csv)
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(out_csv, index=False)
+    if item_frames:
+        pd.concat(item_frames, ignore_index=True).to_parquet(
+            items_path(out_csv), index=False)
     return df

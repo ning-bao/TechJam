@@ -29,7 +29,7 @@ def main():
     import torch
     from PIL import Image
 
-    from track5.eval.matrix import run_matrix
+    from track5.eval.matrix import items_path, run_matrix
     from track5.models import build_model
     from track5.models.preprocess import eval_crop, to_tensor
     from track5.transforms.eval_atoms import ATOMS_VERSION, EVAL_15
@@ -78,10 +78,15 @@ def main():
         "config_hash": ckpt.get("meta", {}).get("config_hash", "unknown"),
         "atoms_version": ATOMS_VERSION,
     }
-    out_csv = Path(args.out) / f"matrix_{meta['config_hash']}_{meta['model_hash']}.csv"
+    # manifest hash in the name: config+model alone cannot say which dataset a
+    # matrix was run on, and protected-set outputs must be identifiable (C2).
+    manifest_hash = file_sha256(args.manifest)[:12]
+    out_csv = Path(args.out) / (f"matrix_{meta['config_hash']}_{meta['model_hash']}"
+                                f"_{manifest_hash}.csv")
     df = run_matrix(manifest, score_fn, atoms, args.cache, args.seed, threshold, out_csv, meta)
     print(df.to_string(index=False))
     print(f"\nwrote {out_csv}")
+    print(f"wrote {items_path(out_csv)}")
 
 
 if __name__ == "__main__":
