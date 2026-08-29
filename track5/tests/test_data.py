@@ -196,3 +196,20 @@ def test_manifest_dataset(data_root, tmp_path):
     # deterministic given same idx/seed
     a, b = ds[2]["pixels"], ds[2]["pixels"]
     assert torch.equal(a, b)
+
+
+def test_epoch_salt_gives_fresh_augmentation_bytes(data_root, tmp_path):
+    torch = pytest.importorskip("torch")
+    out = tmp_path / "wf.parquet"
+    build_manifest("wildfake", data_root, out, workers=1)
+    from track5.data.dataset import ManifestDataset
+    from track5.transforms.train_sampler import TrainDistortionSampler
+
+    ds = ManifestDataset(out, split=None, crop=64, seed=3, data_root=data_root,
+                         distortion_sampler=TrainDistortionSampler())
+    first = [ds[i]["pixels"] for i in range(len(ds))]
+    assert all(torch.equal(t, ds[i]["pixels"]) for i, t in enumerate(first))
+    ds.epoch = 1  # what loader_factory sets for the second pass
+    assert any(not torch.equal(t, ds[i]["pixels"]) for i, t in enumerate(first))
+    ds.epoch = 0  # epoch 0 must stay byte-identical to the trained run
+    assert all(torch.equal(t, ds[i]["pixels"]) for i, t in enumerate(first))

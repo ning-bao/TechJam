@@ -213,6 +213,10 @@ def main() -> int:
     def loader_factory(epoch: int, start_index: int):
         # dataset, sampler and worker_init_fn are all pickled into Windows spawn
         # workers: keep them importable module-level objects, never closures.
+        # Augmentation salt: without this the dataset stays at epoch 0 and a
+        # second epoch replays the first epoch's exact augmented bytes. The
+        # attribute is pickled into the spawn workers together with ds.
+        ds.epoch = epoch
         return DataLoader(
             ds, batch_size=bs, drop_last=True, num_workers=workers,
             pin_memory=(device == "cuda"),
