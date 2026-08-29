@@ -101,6 +101,11 @@ def main() -> int:
     from track5.infer import calibrated_prob, load_checkpoint
     from track5.models.preprocess import eval_crop, to_tensor
     from track5.train.checkpoint import atomic_write_json, atomic_write_text
+    from track5.utils.imaging import apply_decode_policy
+
+    # A submission image larger than PIL's default guard must be scored, not
+    # dropped into the error log. See track5.utils.imaging for the ceiling.
+    apply_decode_policy()
 
     device = ("cuda" if torch.cuda.is_available() else "cpu") \
         if args.device == "auto" else args.device

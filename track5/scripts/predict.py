@@ -57,6 +57,10 @@ def main():
 
     from track5.infer import calibrated_prob, load_checkpoint
     from track5.models.preprocess import eval_crop, to_tensor
+    from track5.utils.imaging import apply_decode_policy
+
+    # See track5.utils.imaging: camera originals cross PIL's default bomb guard.
+    apply_decode_policy()
 
     device = ("cuda" if torch.cuda.is_available() else "cpu") \
         if args.device == "auto" else args.device
