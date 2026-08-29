@@ -16,7 +16,7 @@ per condition.
 | set | shares generators with training? | clean bAcc | worst-case bAcc | max degradation |
 |---|---|---|---|---|
 | dev | all five | 0.9995 | 0.9685 | 3.1 pts |
-| held-out families | none | 0.870 | 0.808 | 6.5 pts |
+| held-out families | none | 0.870 | 0.808 | 6.3 pts |
 | protected benchmark | none (DALL·E 3, unseen) | **0.9891** | **0.9584** | **3.1 pts** |
 
 The protected benchmark is an unseen generator and the model holds 0.958–0.989
@@ -149,8 +149,8 @@ item 3).
 cd track5
 python -u scripts/eval_matrix.py \
     --checkpoint runs/dinov3l448_d4/epoch1_best.pt \
-    --manifest data/manifests/dev.parquet \
-    --atoms all --out reports/matrix_dev15.csv
+    --manifest data/manifests/dev_eval2k.parquet \
+    --atoms all
 ```
 
 `data/manifests/*.parquet` are gitignored regenerable artifacts, produced by

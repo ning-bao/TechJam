@@ -1,0 +1,16 @@
+{
+ "seed": 17,
+ "per_family": 500,
+ "n_real": 2000,
+ "n_rows": 4000,
+ "skipped_unresolvable": 0,
+ "families": {
+  "real": 2000,
+  "adm": 500,
+  "ddpm": 500,
+  "gan": 500,
+  "vqdm": 500
+ },
+ "train_sha_overlap": 0,
+ "purpose": "C2-clean OOD comparison on held-out generator families"
+}

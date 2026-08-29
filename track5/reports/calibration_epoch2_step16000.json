@@ -1,0 +1,16 @@
+{
+ "checkpoint": "runs\\dinov3l448_d4\\epoch2_best_calibrated.pt",
+ "temperature": 1.5187982447792487,
+ "alpha": -0.292236328125,
+ "threshold": 0.48265911656270233,
+ "max_fpr": 0.05,
+ "calib_n": 6000,
+ "clean_frac": 0.5,
+ "mixture_ece_before": 0.0020211292950125543,
+ "mixture_ece_after": 0.001197363138390683,
+ "clean_dev_n": 2000,
+ "clean_dev_fpr": 0.0,
+ "clean_dev_tpr": 1.0,
+ "fitted_on": "calib split (deployment mixture); tau on clean dev",
+ "protected_set_used": false
+}

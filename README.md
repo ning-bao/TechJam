@@ -30,10 +30,11 @@ decoders look like" would fall off a cliff there. This one does not.
 ```bash
 # Python 3.13, MIT-licensed code
 pip install -e track5
+cd track5
 
 # score a directory of images -> JSON array of {image_path, pred}
 python -u -m src.predict \
-    --checkpoint runs/dinov3l448_d4/epoch1_best.pt \
+    --checkpoint runs/dinov3l448_d4/epoch1_best_calibrated.pt \
     --input <image-dir> \
     --output preds.json
 ```
@@ -127,13 +128,13 @@ python -u scripts/build_training_set.py --crop 448
 # 3. shortcut probes — training refuses to start until all four score < 0.60
 python -u scripts/probe_gate.py --manifest data/manifests/train.parquet
 
-# 4. train (resumable segments; ~1.5 s/step on an L40S)
+# 4. train (resumable segments; ~1.5 s/step on an RTX 5070 Ti)
 python -u -m src.train --config configs/dinov3l448_d4.yaml \
     --run-dir runs/dinov3l448_d4 --resume auto --max-wall-minutes 330
 
 # 5. the 15-condition robustness matrix
 python -u scripts/eval_matrix.py --checkpoint runs/dinov3l448_d4/epoch1_best.pt \
-    --manifest data/manifests/dev.parquet --atoms all
+    --manifest data/manifests/dev_eval2k.parquet --atoms all
 ```
 
 Every step is non-interactive, rerunnable, exits non-zero on failure, and writes
