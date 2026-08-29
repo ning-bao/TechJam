@@ -1,6 +1,7 @@
 data/raw/
 data/cache/
 data/derived/
+data/hard_cases/
 runs/
 __pycache__/
 *.pyc
