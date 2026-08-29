@@ -86,12 +86,13 @@ C2PA manifest — so none is a mislabelled AI image.
 
 - All 100 come from a single platform (Unsplash), so its processing pipeline is a
   competing explanation for any elevated false-positive rate (item 7).
-- The images are 15–100 MP JPEG originals, while the generated set is 1–1.6 MP
-  PNG. A 448 px centre crop therefore covers a median 1.0% of a real frame and
-  18.7% of a generated one. Measured: median high-frequency energy in the native
-  crop is 4.3 for the minimal-composition category against 12.8 for the generated
-  set, and most of that gap closes when the real images are rescaled to the
-  generated set's scale (item 5).
+- The images are 3.1–103.8 MP JPEG originals (median 19.9, with 34 of 100 under
+  15 MP and 46 over 20 MP), while the generated set is 1–1.6 MP PNG. A 448 px
+  centre crop therefore covers a median 1.0% of a real frame and 18.7% of a
+  generated one. Measured: median high-frequency energy in the native crop is
+  4.3 for the minimal-composition category against 12.8 for the generated set,
+  and most of that gap closes when the real images are rescaled to the generated
+  set's scale (item 5).
 
 The second confound matters more than it looks. A false positive on a
 minimal-composition photograph may be reporting *resolution*, not photography —

@@ -131,8 +131,12 @@ They differ in ways that are not the thing being tested:
 | | real set | generated set |
 |---|---|---|
 | container | JPEG | PNG |
-| resolution | 15–100 MP | 1.0–1.6 MP |
+| resolution | 3.1–103.8 MP (median 19.9) | 1.0–1.6 MP |
 | 448 crop covers | 0.19–6.5% of the frame (median 1.0%) | 12.8–19.1% (median 18.7%) |
+
+The real set is also wide *internally*: 34 of its 100 images are under 15 MP and
+46 are over 20 MP, so "the real set" is not one resolution regime but two, and a
+per-image crop-coverage figure matters more than the set-level median.
 
 A fixed centre crop therefore shows the model a patch of fabric or sky from a
 real photograph and most of the composition from a generated one. Measured
