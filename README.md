@@ -196,10 +196,11 @@ The short version:
   transform — refitting per condition would be tuning on the evaluation
   conditions, which we consider indefensible.
 - **Our hard-case evaluation sets are not mutually comparable at `clean`.** The
-  100 human-curated real photographs are JPEG originals of 15–100 MP; the 100
-  generated images are PNG at 1–1.6 MP. A fixed 448 px centre crop therefore
-  covers ~1% of a real frame and ~19% of a generated one. Only the JPEG
-  conditions, where every image is re-encoded identically, are clean comparisons.
+  100 human-curated real photographs are JPEG originals spanning 3.1–103.8 MP
+  (median 19.9); the 100 generated images are PNG at 1–1.6 MP. A fixed 448 px
+  centre crop therefore covers a median 1.0% of a real frame and 18.7% of a
+  generated one. Only the JPEG conditions, where every image is re-encoded
+  identically, are clean comparisons.
 - **All 100 curated real photographs come from one platform** (Unsplash), so a
   false-positive rate measured on them cannot separate "this kind of photograph
   is hard" from "this platform's processing pipeline has a signature".
