@@ -52,7 +52,7 @@ Full CLI reference: [track5/README.md](track5/README.md).
 | [track5/src/track5/](track5/src/track5/) | the library: data, transforms, model, training loop, evaluation, calibration |
 | [track5/src/predict.py](track5/src/predict.py) | **the submission CLI** — image directory in, `{image_path, pred}` JSON out |
 | [track5/scripts/](track5/scripts/) | manifest building, denylist construction, probes, matrix evaluation |
-| [track5/tests/](track5/tests/) | 330 tests, run in CI on every push |
+| [track5/tests/](track5/tests/) | 331 tests, run in CI on every push |
 | [track5/reports/](track5/reports/) | measured results: training, evaluation, data preparation, verification |
 | [track5/analysis/](track5/analysis/) | calibration and decision-curve analysis (R) |
 | [PLAN.md](PLAN.md) | every design decision, numbered, with the evidence behind it |
@@ -138,7 +138,7 @@ python -u scripts/eval_matrix.py --checkpoint runs/dinov3l448_d4/epoch1_best.pt 
 ```
 
 Every step is non-interactive, rerunnable, exits non-zero on failure, and writes
-output atomically. Tests: `python -m pytest -q` (330 collected, GPU-only and
+output atomically. Tests: `python -m pytest -q` (331 collected, GPU-only and
 weight-downloading tests deselected by default).
 
 The protected-benchmark numbers in the table above are **not** reproduced by
