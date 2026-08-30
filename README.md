@@ -32,6 +32,11 @@ decoders look like" would fall off a cliff there. This one does not.
 pip install -e track5
 cd track5
 
+# fetch the submission checkpoint (DINOv3 License, NOT MIT - see WEIGHTS_LICENSE.md)
+mkdir -p runs/dinov3l448_d4
+curl -L -o runs/dinov3l448_d4/epoch1_best_calibrated.pt \
+    https://github.com/ning-bao/TechJam/releases/download/<TAG>/epoch1_best_calibrated.pt
+
 # score a directory of images -> JSON array of {image_path, pred}
 python -u -m src.predict \
     --checkpoint runs/dinov3l448_d4/epoch1_best_calibrated.pt \
@@ -219,13 +224,20 @@ The short version:
 | | |
 |---|---|
 | **Bao Ning** | Repository, training pipeline, model, evaluation harness, calibration, CI. All GPU work. |
-| **Cai Haitong** (lead) | Problem framing, plan and interface contracts, C2 protected-set discipline, independent verification of deliverables, evaluation-protocol review. |
-| **Xiong** | Hard-case datasets: 100 curated real photographs and 100 generated images across four models, with provenance manifest and validation scripts. |
-| **Zhang** | Calibration curves, decision-curve analysis, threshold-drift figures (R). |
-| **Yang** | Degradation estimator, notebook-scale evaluation subset. |
+| **Cai Haitong** (lead) | Problem framing, plan and interface contracts, C2 protected-set discipline, independent verification of deliverables, evaluation-protocol review. Authored the submission README, KNOWN_LIMITATIONS, and deliverables 4 and 5. |
+| **Xiong Yuxuan** | Hard-case datasets: 100 curated real photographs and 100 generated images across four models, with provenance manifest and validation scripts. |
+| **Zhang Xinghan** | R analysis pipeline for calibration curves, ECE, decision-curve analysis and threshold drift, built and validated against a mock dataset. |
+| **Yang Zihao** | Degradation estimator (DCT-based blind JPEG quality-factor estimation); provenance-survival measurement of C2PA declarations under the 15 transforms. |
 
 ## Licence
 
-Code is MIT. DINOv3 weights carry Meta's community licence: a DINOv3-derived
-checkpoint must never be relicensed as MIT. Everything else on the critical path
-is Apache-2.0 or MIT.
+**Code: MIT** — see [LICENSE](LICENSE).
+
+**Weights: DINOv3 License, not MIT** — see [WEIGHTS_LICENSE.md](WEIGHTS_LICENSE.md).
+The submitted checkpoint is a full fine-tune of DINOv3
+(`facebook/dinov3-vitl16-pretrain-lvd1689m`), developed by Meta AI and used
+under the DINOv3 License. A DINOv3-derived checkpoint must never be relicensed
+as MIT, so the two licences are kept separate and the agreement travels with
+the weights in the release.
+
+Everything else on the critical path is Apache-2.0 or MIT.
