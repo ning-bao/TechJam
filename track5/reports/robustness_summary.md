@@ -22,8 +22,9 @@ per condition.
 The protected benchmark is an unseen generator and the model holds 0.958–0.989
 across it. The held-out-families set is harder than the benchmark: it is four
 low-resolution diffusion families that the 448 px crop policy excluded from
-training entirely (see KNOWN_LIMITATIONS item 1), so it is the most adversarial
-read we have.
+training entirely (see KNOWN_LIMITATIONS item 1). It was the most adversarial
+read we had until the hard-case run: on 2026 consumer endpoints the detector
+fails outright (error analysis §4, KNOWN_LIMITATIONS item 11).
 
 ---
 

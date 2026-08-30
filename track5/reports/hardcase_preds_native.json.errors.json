@@ -1,0 +1,19 @@
+{
+ "n_records": 200,
+ "n_errors": 0,
+ "error_pred": null,
+ "strict": true,
+ "protected_run": false,
+ "checkpoint_meta": {
+  "model_hash": "f93b4a45748f",
+  "config_hash": "4ed11edd6769",
+  "backbone": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "step": 7000
+ },
+ "calibration": {
+  "temperature": 1.368804671038221,
+  "alpha": -0.13818359375,
+  "threshold": 0.45936643399060617
+ },
+ "errors": []
+}
