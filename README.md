@@ -189,8 +189,10 @@ The short version:
 - **A second training epoch made the model worse on unseen generators** and we
   submitted the first. The cause is a real bug we found and are disclosing:
   the augmentation RNG had no epoch term, so epoch 2 replayed epoch 1's exact
-  augmented bytes. With more time, the fix is committed and a genuine second
-  epoch is the first thing we would test.
+  augmented bytes. We fixed it and reran the second epoch with fresh draws: that
+  recovered 2–4 points of the held-out loss and still trailed epoch 1 by 6.6
+  points worst-case — the bug was an amplifier, the second epoch itself the
+  dominant cause. Epoch 1 stands.
 - **Calibration does not transfer to unseen generators.** ECE rises from 0.013
   in-distribution to 0.10–0.19 on held-out families. This is the price of
   fitting temperature once on a deployment mixture and never refitting per

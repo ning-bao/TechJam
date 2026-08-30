@@ -64,6 +64,25 @@ This is why the held-out-families split exists, and it is the reason the decisio
 went against our own selection metric (documented as a deviation in
 KNOWN_LIMITATIONS item 2).
 
+**The ablation, run (2026-08-30).** After fixing the RNG we retrained the second
+epoch with everything else identical — same config hash, same batch order, fresh
+augmentation bytes only. Held-out families, calibrated, n = 4,000 per condition:
+
+| condition | epoch 1 | buggy epoch 2 | salted epoch 2 |
+|---|---|---|---|
+| clean | 0.8703 | 0.8045 | 0.8295 |
+| JPEG q30 | 0.8313 | 0.7205 | 0.7415 |
+| blur σ2.0 | 0.8830 | 0.8098 | 0.8275 |
+| resize 0.25× | 0.9158 | 0.7995 | 0.8335 |
+| noise σ0.10 | 0.8075 | 0.7628 | 0.8028 |
+| **worst case** | **0.8075** | **0.7205** | **0.7415** |
+
+Fresh draws recover 2–4 points per condition but close only about a quarter of
+the worst-case gap; the rest is the second pass itself. The salted epoch still
+beat epoch 1 on dev (worst-case 0.9785 vs 0.9685) while losing held-out by 6.6
+points — the in-distribution split rewarded the overfit both times. The lesson
+above is a measurement now, not an inference.
+
 ---
 
 ## 3. Where false positives are structurally likely

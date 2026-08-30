@@ -1,0 +1,16 @@
+{
+ "checkpoint": "runs\\dinov3l448_e2salt\\best_calibrated.pt",
+ "temperature": 1.49627326956859,
+ "alpha": -0.81396484375,
+ "threshold": 0.32248069955126907,
+ "max_fpr": 0.05,
+ "calib_n": 6000,
+ "clean_frac": 0.5,
+ "mixture_ece_before": 0.0019685188071345066,
+ "mixture_ece_after": 0.001246401079157625,
+ "clean_dev_n": 2000,
+ "clean_dev_fpr": 0.0,
+ "clean_dev_tpr": 1.0,
+ "fitted_on": "calib split (deployment mixture); tau on clean dev",
+ "protected_set_used": false
+}

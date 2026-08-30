@@ -67,8 +67,19 @@ scored on unseen ones. Epoch 2's dev lead and its held-out collapse have the sam
 cause, which makes the dev lead evidence of overfitting rather than of quality.
 The held-out split is our own data and contains no protected images.
 
-**With more time.** The epoch-salt fix is committed. A genuine second epoch —
-fresh augmentation draws — is the first experiment we would run.
+**We ran it (2026-08-30).** With the salt fixed, the second epoch was retrained
+from the step-8000 checkpoint so that every step of it drew fresh augmentations
+(run `dinov3l448_e2salt`, same config hash, calibrated by the same D7
+procedure). Fresh draws recovered part of the buggy run's held-out loss on every
+condition — clean 0.8045 → 0.8295, resize 0.7995 → 0.8335, noise 0.7628 →
+0.8028 — and still lost to epoch 1 everywhere: worst-case **0.7415 against
+0.8075**, non-overlapping CIs. Temperature says the same thing: the buggy second
+epoch needed T = 1.519 and the salted one T = 1.496, against epoch 1's 1.369
+(α: −0.138 → −0.292 buggy → −0.814 salted). The replay bug was an amplifier
+worth 2–4 points; the dominant cause is the second pass itself — more fitting to
+the same five families after dev has saturated. Epoch 1 remains the submission.
+Artifacts: `reports/matrix_ood_excluded_epoch2salt_calibrated.csv`,
+`reports/calibration_epoch2salt_best.json`.
 
 ---
 
