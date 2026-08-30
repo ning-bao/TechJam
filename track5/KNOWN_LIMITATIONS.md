@@ -239,3 +239,23 @@ a property of the organiser's data, verified against the source denylist.
   version that cannot exist on a CPU-only runner, so one of four environment-lock
   assertions is deselected in CI rather than weakened. What that assertion should
   check on a non-CUDA machine is unresolved.
+
+---
+
+## 11. 2026 consumer generators evade the frozen operating point
+
+*(Measured last, so numbered last; by how much it should move a reader's
+confidence it belongs directly after item 1.)*
+
+On the curated hard-case set, the submission checkpoint detects the seen-family
+Flux control at 25/25 (median score 0.9993) and the 2026 consumer-endpoint
+slice — gpt-image-2, Gemini 3 Pro, Gemini 3.1 Flash — at **5/75**, with median
+scores of 0.004–0.008: confidently wrong, so ranking fails along with the
+threshold. It is not watermark-reading (a watermark-reading detector would find
+the watermarked slice easy), and it is not unseen-family fragility alone
+(DALL·E 3 is unseen and holds 0.9891): it is the 2026 generation of consumer
+endpoints specifically. Full numbers, per-item scores and the twelve worst
+cases: `reports/error_analysis.md` §4.
+
+**With more time.** Add 2026-generation families to the training corpus. The
+recipe does not change; the corpus ages.

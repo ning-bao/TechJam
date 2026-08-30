@@ -1,0 +1,802 @@
+[
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/001.jpg",
+  "pred": 0.016412605529108587
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/002.jpg",
+  "pred": 0.006568177058815934
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/003.jpg",
+  "pred": 0.7009247124380491
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/004.jpg",
+  "pred": 0.01411364384573551
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/005.jpg",
+  "pred": 0.008781961662516005
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/006.jpg",
+  "pred": 0.3119946649241687
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/007.jpg",
+  "pred": 0.008722809479409292
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/008.jpg",
+  "pred": 0.017501070816898508
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/009.jpg",
+  "pred": 0.013969029782587402
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/010.jpg",
+  "pred": 0.00818820802127524
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/011.jpg",
+  "pred": 0.002690880953646033
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/012.jpg",
+  "pred": 0.004262935350249299
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/013.jpg",
+  "pred": 0.0013353282924634695
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/014.jpg",
+  "pred": 0.002335904949297956
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/015.jpg",
+  "pred": 0.02061626856277054
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/016.jpg",
+  "pred": 0.19544491948016887
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/017.jpg",
+  "pred": 0.017004515927208096
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/018.jpg",
+  "pred": 0.009735697993867974
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/019.jpg",
+  "pred": 0.0283039023124109
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/020.jpg",
+  "pred": 0.009113940806478652
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/021.jpg",
+  "pred": 0.007805493267745188
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/022.jpg",
+  "pred": 0.001109159130847246
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/023.jpg",
+  "pred": 0.029147066602613198
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/024.jpg",
+  "pred": 0.03438894560909084
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/025.jpg",
+  "pred": 0.2078984248345105
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/026.jpg",
+  "pred": 0.005278268268706069
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/027.jpg",
+  "pred": 0.007719261560345674
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/028.jpg",
+  "pred": 0.02468173158698894
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/029.jpg",
+  "pred": 0.011809974411555702
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/030.jpg",
+  "pred": 0.0063723718251145435
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/031.jpg",
+  "pred": 0.011124259930272561
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/032.jpg",
+  "pred": 0.006843050916856955
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/033.jpg",
+  "pred": 0.0023962817189751313
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/034.jpg",
+  "pred": 0.03075485323454708
+ },
+ {
+  "image_path": "A_fp_magnet/heavy_postprocess_landscape/035.jpg",
+  "pred": 0.006107844336270248
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/001.jpg",
+  "pred": 0.007668791824323765
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/002.jpg",
+  "pred": 0.01318748995714406
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/003.jpg",
+  "pred": 0.009843505170434887
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/004.jpg",
+  "pred": 0.0040952824010311835
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/005.jpg",
+  "pred": 0.012161730353689153
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/006.jpg",
+  "pred": 0.0033958160870059865
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/007.jpg",
+  "pred": 0.006753557259805697
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/008.jpg",
+  "pred": 0.007543369987812539
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/009.jpg",
+  "pred": 0.001751997854653467
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/010.jpg",
+  "pred": 0.016410749824293087
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/011.jpg",
+  "pred": 0.014784232764794838
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/012.jpg",
+  "pred": 0.1386782310955394
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/013.jpg",
+  "pred": 0.012405506285747924
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/014.jpg",
+  "pred": 0.02997598588759816
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/015.jpg",
+  "pred": 0.011513300184224367
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/016.jpg",
+  "pred": 0.003628842080610999
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/017.jpg",
+  "pred": 0.0013851458538905645
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/018.jpg",
+  "pred": 0.024617493219977978
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/019.jpg",
+  "pred": 0.010683245612129237
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/020.jpg",
+  "pred": 0.0438464215580899
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/021.jpg",
+  "pred": 0.16806178667863284
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/022.jpg",
+  "pred": 0.0014806039838222334
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/023.jpg",
+  "pred": 0.004766123244697058
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/024.jpg",
+  "pred": 0.024785711818052256
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/025.jpg",
+  "pred": 0.0068162812573912285
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/026.jpg",
+  "pred": 0.001519149205820698
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/027.jpg",
+  "pred": 0.8011758716150812
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/028.jpg",
+  "pred": 0.02487669604875989
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/029.jpg",
+  "pred": 0.005881775257828007
+ },
+ {
+  "image_path": "A_fp_magnet/minimal_or_incoherent/030.jpg",
+  "pred": 0.10321188300100131
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/001.jpg",
+  "pred": 0.0004582257434627782
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/002.jpg",
+  "pred": 0.0004902628865627641
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/003.jpg",
+  "pred": 0.0009230461394055125
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/004.jpg",
+  "pred": 0.0009362011740112589
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/005.jpg",
+  "pred": 0.0009783317432421098
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/006.jpg",
+  "pred": 0.0007171839919458342
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/007.jpg",
+  "pred": 0.009982126283578871
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/008.jpg",
+  "pred": 0.0004407307615519373
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/009.jpg",
+  "pred": 0.0014517425614069001
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/010.jpg",
+  "pred": 0.0007123648445224402
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/011.jpg",
+  "pred": 0.0001640523738868749
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/012.jpg",
+  "pred": 0.0027770521753827542
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/013.jpg",
+  "pred": 0.009624772188782582
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/014.jpg",
+  "pred": 0.0005486225560362019
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/015.jpg",
+  "pred": 0.0008547479604545724
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/016.jpg",
+  "pred": 0.0007462684299123716
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/017.jpg",
+  "pred": 0.0010409818587938785
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/018.jpg",
+  "pred": 0.0007932998717404281
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/019.jpg",
+  "pred": 0.001975233760468637
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/020.jpg",
+  "pred": 0.006683048448603058
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/021.jpg",
+  "pred": 0.0029374736608070123
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/022.jpg",
+  "pred": 0.0015042057416589862
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/023.jpg",
+  "pred": 0.005592266505739234
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/024.jpg",
+  "pred": 0.0012763304530703258
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/025.jpg",
+  "pred": 0.0031387465298937057
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/026.jpg",
+  "pred": 0.0064052662038873685
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/027.jpg",
+  "pred": 0.0017032003538082552
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/028.jpg",
+  "pred": 0.005240723630356709
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/029.jpg",
+  "pred": 0.003026431308001275
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/030.jpg",
+  "pred": 0.0001625537363645203
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/031.jpg",
+  "pred": 0.0015348056009628875
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/032.jpg",
+  "pred": 0.0013901933583257721
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/033.jpg",
+  "pred": 0.0030061772566564744
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/034.jpg",
+  "pred": 0.002071135982406888
+ },
+ {
+  "image_path": "A_fp_magnet/studio_portrait/035.jpg",
+  "pred": 0.0017590782627135246
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/001.png",
+  "pred": 0.9992637770072307
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/002.png",
+  "pred": 0.999467503388835
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/003.png",
+  "pred": 0.9991116395361099
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/004.png",
+  "pred": 0.9991895738331806
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/005.png",
+  "pred": 0.9996320023614914
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/006.png",
+  "pred": 0.9994203203742608
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/007.png",
+  "pred": 0.9993113035234635
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/008.png",
+  "pred": 0.9988042388811469
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/009.png",
+  "pred": 0.9994668782179874
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/010.png",
+  "pred": 0.999303798601036
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/011.png",
+  "pred": 0.9994405196916057
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/012.png",
+  "pred": 0.9991851839363208
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/013.png",
+  "pred": 0.9994462281693863
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/014.png",
+  "pred": 0.998910651570813
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/015.png",
+  "pred": 0.998472371681575
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/016.png",
+  "pred": 0.9992355523907144
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/017.png",
+  "pred": 0.999446369670385
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/018.png",
+  "pred": 0.9990821704072568
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/019.png",
+  "pred": 0.9990766164804294
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/020.png",
+  "pred": 0.9993021179914937
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/021.png",
+  "pred": 0.9995330186318588
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/022.png",
+  "pred": 0.9985268768021249
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/023.png",
+  "pred": 0.9991869959425423
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/024.png",
+  "pred": 0.9995830096560002
+ },
+ {
+  "image_path": "B_fn_magnet/flux_dev/025.png",
+  "pred": 0.9995817141866388
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/001.png",
+  "pred": 0.1442559219189474
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/002.png",
+  "pred": 0.0032693983392031445
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/003.png",
+  "pred": 0.008235831110854509
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/004.png",
+  "pred": 0.9513455617572457
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/005.png",
+  "pred": 0.3299983613307219
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/006.png",
+  "pred": 0.011695121389316042
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/007.png",
+  "pred": 0.004745943630188513
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/008.png",
+  "pred": 0.010098319503575847
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/009.png",
+  "pred": 0.0013161143541450004
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/010.png",
+  "pred": 0.06086564911245135
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/011.png",
+  "pred": 0.8953479517678643
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/012.png",
+  "pred": 0.0009914365054060727
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/013.png",
+  "pred": 0.0004385028733850885
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/014.png",
+  "pred": 0.0011870714105793425
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/015.png",
+  "pred": 0.0010340007041552864
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/016.png",
+  "pred": 0.0005115600534529052
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/017.png",
+  "pred": 0.0004880191745071135
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/018.png",
+  "pred": 0.01629163126461458
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/019.png",
+  "pred": 0.0004765993643522053
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_1_flash_image/020.png",
+  "pred": 0.3154433130691894
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/001.png",
+  "pred": 0.8973238246854526
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/002.png",
+  "pred": 0.004592255812682817
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/003.png",
+  "pred": 0.0005052417033727647
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/004.png",
+  "pred": 0.0005026273210496175
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/005.png",
+  "pred": 0.04007976530376499
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/006.png",
+  "pred": 0.003306620157743263
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/007.png",
+  "pred": 0.0022541704500151976
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/008.png",
+  "pred": 0.4414331563500944
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/009.png",
+  "pred": 0.008285892679895716
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/010.png",
+  "pred": 0.020672233564540187
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/011.png",
+  "pred": 0.10295027545578556
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/012.png",
+  "pred": 0.009699998174952328
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/013.png",
+  "pred": 0.0076399919705285166
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/014.png",
+  "pred": 0.0050141786191213395
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/015.png",
+  "pred": 0.0003921935877374972
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/016.png",
+  "pred": 0.9468895855672507
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/017.png",
+  "pred": 0.990134696705986
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/018.png",
+  "pred": 0.0012935747495113324
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/019.png",
+  "pred": 0.01631438042334977
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/020.png",
+  "pred": 0.0017746561364452543
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/021.png",
+  "pred": 0.000251769562691932
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/022.png",
+  "pred": 0.006938821273073629
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/023.png",
+  "pred": 0.0014012040912412052
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/024.png",
+  "pred": 0.015641565833821956
+ },
+ {
+  "image_path": "B_fn_magnet/gemini_3_pro_image/025.png",
+  "pred": 0.011861840914414971
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/001.png",
+  "pred": 0.002197516140827257
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/002.png",
+  "pred": 0.019364689279488406
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/003.png",
+  "pred": 0.03461539498293881
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/004.png",
+  "pred": 0.0013513634615071439
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/005.png",
+  "pred": 0.010491566519493465
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/006.png",
+  "pred": 0.00813402282250319
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/007.png",
+  "pred": 0.003384052831036533
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/008.png",
+  "pred": 0.003184662249278562
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/009.png",
+  "pred": 0.0038705045787609835
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/010.png",
+  "pred": 0.00041984837802060924
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/011.png",
+  "pred": 0.00259012223425149
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/012.png",
+  "pred": 0.00040068381311824346
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/013.png",
+  "pred": 0.0006146636348606156
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/014.png",
+  "pred": 0.006673802296348045
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/015.png",
+  "pred": 0.0018466779709298306
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/016.png",
+  "pred": 0.0005621439735084418
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/017.png",
+  "pred": 0.005471027917586661
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/018.png",
+  "pred": 0.003647944057474912
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/019.png",
+  "pred": 0.0243050737810476
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/020.png",
+  "pred": 0.0045544895203334735
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/021.png",
+  "pred": 0.015777771858442865
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/022.png",
+  "pred": 0.0014482935016761165
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/023.png",
+  "pred": 0.004577593928005668
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/024.png",
+  "pred": 0.009359509864728992
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/025.png",
+  "pred": 0.011636853327248417
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/026.png",
+  "pred": 0.010096216393744325
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/027.png",
+  "pred": 0.002800334268321152
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/028.png",
+  "pred": 0.0008655164522263307
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/029.png",
+  "pred": 0.0011252541116654874
+ },
+ {
+  "image_path": "B_fn_magnet/gpt_image_2_azure/030.png",
+  "pred": 0.011168746833202074
+ }
+]

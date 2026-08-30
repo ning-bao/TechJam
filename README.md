@@ -207,6 +207,12 @@ The short version:
 - **All 100 curated real photographs come from one platform** (Unsplash), so a
   false-positive rate measured on them cannot separate "this kind of photograph
   is hard" from "this platform's processing pipeline has a signature".
+- **2026 consumer endpoints evade the detector.** On our own hard-case set the
+  seen-family Flux control is caught 25/25 while gpt-image-2 and Gemini 3 are
+  missed 70 of 75 at the frozen operating point — confidently, not marginally.
+  The no-watermark control refutes watermark-reading, and DALL·E 3 (also
+  unseen) holds 0.9891 — so it is the newest generation specifically
+  (KNOWN_LIMITATIONS item 11).
 
 ## Team contributions
 

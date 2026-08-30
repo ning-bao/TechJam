@@ -150,33 +150,104 @@ the near miss this caused.
 
 ---
 
-## 4. Individual cases — pending the scoring run
+## 4. Individual cases — measured 2026-08-30
 
-**What is needed:** one inference pass over the 200 hard-case images with the
-frozen checkpoint, scored twice for set A (native crop and
-downscale-then-crop-to-1024).
+One inference pass over the 200 hard-case images with the frozen submission
+checkpoint (`epoch1_best_calibrated.pt`, τ = 0.4594), set A scored twice —
+native crop, and long-side-to-1024 then crop (lossless PNG, Lanczos; no image
+falls below the 448 crop after downscaling, so no padding is involved).
+Per-item scores: `reports/hardcase_preds_native.json` and
+`reports/hardcase_preds_A_1024.json`.
 
-**What will be reported:** the 12 highest-scoring real photographs (worst false
-positives) and the 12 lowest-scoring generated images (worst false negatives),
-each with its score, its category, and — for set A — both crop variants so the
-resolution confound is visible per image.
+**The acceptance criteria were fixed in advance** (in the repository history
+before the run). Verdicts:
 
-**Acceptance criteria decided in advance**, so the analysis cannot be shaped by
-what comes back:
+- *Set A FPR at the frozen τ exceeds 5% → headline finding.* **Not triggered:
+  2/100 native, 1/100 downscaled.** The operating point survives adversarial
+  real photographs.
+- *Watermarked 75 vs Flux 25 differ by >~5 points → detector reads watermarks;
+  report split.* **Triggered at 93.3 points — in the reverse direction from the
+  anticipated mechanism.** Flux, the no-watermark control: 25/25 detected,
+  median score 0.9993. The watermarked slice: 5/75, median scores 0.004–0.008.
+  A watermark-reading detector would find the watermarked images easy; this
+  refutes that mechanism. All set B numbers below are reported split.
+- *Crop variants of set A disagree by >~3 points → FPR is about crop policy.*
+  **Not triggered in aggregate** (2% vs 1%). Per image the variant is decisive:
+  both native false positives fall to ≤0.004 when downscaled, and one image
+  flips the other way, 0.044 → 0.956.
 
-- If set A's false-positive rate at the frozen τ exceeds 5%, the operating point
-  does not survive contact with adversarial real photographs and that is the
-  headline finding, not a footnote.
-- If the watermarked 75 and the Flux 25 differ by more than ~5 points of bAcc,
-  the detector is reading watermarks rather than generator artifacts, and every
-  set B number must be reported split rather than pooled.
-- If the two crop variants of set A disagree by more than ~3 points, the
-  false-positive rate is a statement about our crop policy and must be reported
-  as both numbers.
+### The finding: 2026 consumer endpoints evade the detector
 
-This section is empty rather than estimated. Numbers here would be invented, and
-an error-analysis note built on invented cases is worse than one that says which
-measurement is missing.
+| set B slice | recall @ frozen τ | median score |
+|---|---|---|
+| flux_dev (seen family, no watermark) | **25/25** | 0.9993 |
+| gpt-image-2 (Azure) | **0/30** | 0.0038 |
+| gemini-3-pro-image | 3/25 | 0.0076 |
+| gemini-3.1-flash-image | 2/20 | 0.0065 |
+| text-bearing subset (10 across slices) | 1/10 | — |
+
+These are not threshold-marginal misses: the missed images score around 0.005
+where Flux scores 0.999, so ranking fails along with the operating point.
+Unseen-family fragility alone does not explain it — DALL·E 3 Advanced is also
+unseen and the protected benchmark holds 0.9891 clean (§3 of the robustness
+summary). What separates the missed slice is the *generation and delivery
+pipeline*: 2026 consumer endpoints (ChatGPT Images 2.0, Gemini 3.x) producing
+deliberately mundane 1–1.6 MP PNGs. Candidate explanations, none proven here:
+decoder architectures whose artifacts our 2023–24 training families do not
+span; vendor-side post-processing — including the pixel watermarks themselves —
+overwriting the high-frequency traces the detector reads; the mundane-curation
+brief removing semantic tells. Visible text did not rescue detection: 1 of the
+10 text-bearing images was caught, against text rendering being a known
+generator weakness.
+
+Scope: the track's scored benchmark is the DALL·E protected set, where the
+detector holds 0.958–0.989. This finding is measured on our own adversarial
+curation of the 2026 frontier, and it is the first thing more time would go to:
+add 2026-generation families to the training corpus — the recipe is unchanged,
+the corpus ages.
+
+### Worst false positives — the 12 highest-scoring real photographs
+
+| image | native | down-1024 | category |
+|---|---|---|---|
+| minimal_or_incoherent/027.jpg | **0.8012** | 0.0041 | minimal_or_incoherent |
+| heavy_postprocess_landscape/003.jpg | **0.7009** | 0.0012 | heavy_postprocess_landscape |
+| heavy_postprocess_landscape/006.jpg | 0.3120 | 0.0052 | heavy_postprocess_landscape |
+| heavy_postprocess_landscape/025.jpg | 0.2079 | 0.0006 | heavy_postprocess_landscape |
+| heavy_postprocess_landscape/016.jpg | 0.1954 | 0.0052 | heavy_postprocess_landscape |
+| minimal_or_incoherent/021.jpg | 0.1681 | 0.0203 | minimal_or_incoherent |
+| minimal_or_incoherent/012.jpg | 0.1387 | 0.0049 | minimal_or_incoherent |
+| minimal_or_incoherent/030.jpg | 0.1032 | 0.0216 | minimal_or_incoherent |
+| minimal_or_incoherent/020.jpg | 0.0438 | **0.9558** | minimal_or_incoherent |
+| heavy_postprocess_landscape/024.jpg | 0.0344 | 0.0008 | heavy_postprocess_landscape |
+| heavy_postprocess_landscape/034.jpg | 0.0308 | 0.0031 | heavy_postprocess_landscape |
+| minimal_or_incoherent/014.jpg | 0.0300 | 0.0044 | minimal_or_incoherent |
+
+Only the top two cross τ natively, and both collapse to noise when the image is
+brought to the generated set's scale — those false positives are reporting
+resolution, exactly as §3 predicted. `020.jpg` is the counterexample worth
+keeping: benign at native resolution, 0.956 downscaled. The studio_portrait
+category produced no false positive in either variant.
+
+### Worst false negatives — the 12 lowest-scoring generated images
+
+| image | score | generator | declared watermark |
+|---|---|---|---|
+| gemini_3_pro_image/021.png | 0.0003 | gemini-3-pro | SynthID |
+| gemini_3_pro_image/015.png | 0.0004 | gemini-3-pro | SynthID |
+| gpt_image_2_azure/012.png | 0.0004 | gpt-image-2 | invismark |
+| gpt_image_2_azure/010.png | 0.0004 | gpt-image-2 | invismark |
+| gemini_3_1_flash_image/013.png | 0.0004 | gemini-3.1-flash | SynthID · has_text |
+| gemini_3_1_flash_image/019.png | 0.0005 | gemini-3.1-flash | SynthID · has_text |
+| gemini_3_1_flash_image/017.png | 0.0005 | gemini-3.1-flash | SynthID · has_text |
+| gemini_3_pro_image/004.png | 0.0005 | gemini-3-pro | SynthID |
+| gemini_3_pro_image/003.png | 0.0005 | gemini-3-pro | SynthID |
+| gemini_3_1_flash_image/016.png | 0.0005 | gemini-3.1-flash | SynthID · has_text |
+| gpt_image_2_azure/016.png | 0.0006 | gpt-image-2 | invismark |
+| gpt_image_2_azure/013.png | 0.0006 | gpt-image-2 | invismark |
+
+All twelve come from the watermarked 2026 slice — no Flux image appears until
+rank 76 — and four carry visible scene text.
 
 ---
 
