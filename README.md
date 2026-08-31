@@ -35,7 +35,7 @@ cd track5
 # fetch the submission checkpoint (DINOv3 License, NOT MIT - see WEIGHTS_LICENSE.md)
 mkdir -p runs/dinov3l448_d4
 curl -L -o runs/dinov3l448_d4/epoch1_best_calibrated.pt \
-    https://github.com/ning-bao/TechJam/releases/download/<TAG>/epoch1_best_calibrated.pt
+    https://github.com/ning-bao/TechJam/releases/download/submission-epoch1-step7000/epoch1_best_calibrated.pt
 
 # score a directory of images -> JSON array of {image_path, pred}
 python -u -m src.predict \
