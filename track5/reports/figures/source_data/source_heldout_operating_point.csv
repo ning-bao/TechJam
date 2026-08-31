@@ -1,0 +1,11 @@
+"condition","condition_label","n","tp","fp","tn","fn","metric","value"
+"clean","Clean",4000,1483,2,1998,517,"False-positive rate",0.001
+"jpeg_30","JPEG Q30",4000,1348,23,1977,652,"False-positive rate",0.0115
+"blur_20","Blur 2.0",4000,1545,13,1987,455,"False-positive rate",0.0065
+"resize_025","Resize 0.25",4000,1715,52,1948,285,"False-positive rate",0.026
+"noise_010","Noise 0.10",4000,1260,30,1970,740,"False-positive rate",0.015
+"clean","Clean",4000,1483,2,1998,517,"Sensitivity",0.7415
+"jpeg_30","JPEG Q30",4000,1348,23,1977,652,"Sensitivity",0.674
+"blur_20","Blur 2.0",4000,1545,13,1987,455,"Sensitivity",0.7725
+"resize_025","Resize 0.25",4000,1715,52,1948,285,"Sensitivity",0.8575
+"noise_010","Noise 0.10",4000,1260,30,1970,740,"Sensitivity",0.63
