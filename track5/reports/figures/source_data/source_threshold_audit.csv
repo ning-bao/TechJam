@@ -1,0 +1,3 @@
+"threshold_id","threshold_source","threshold","implied_C_FP_over_C_FN","used_for_primary_figures","status"
+"version_locked_model_threshold","calibration threshold distributed with the real model outputs",0.459366433990606,0.849681675115645,TRUE,"version locked"
+"legacy_unit_test_fixture","unit-test fixture constant; not a model operating threshold",0.7439,2.90472471690746,FALSE,"test fixture only"
