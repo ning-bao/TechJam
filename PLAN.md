@@ -50,7 +50,7 @@ BCE loss (focal γ=2/α=0.5 as config toggle), AdamW, cosine + warmup, lower bac
 **Stretch (gate-controlled):** clean/distorted logit-consistency (KL) pairs à la NTIRE 3rd — only if the clean→degraded dev gap stays >5 bAcc.
 
 ### D7. Calibration & threshold (§10.2, §10.4)
-Temperature + one-scalar logit bias (α) fitted on **our own** deployment-mixture calibration split (equal clean/transformed buckets). One threshold frozen on clean dev (max bAcc s.t. FPR ≤ 5%), **never refit per transform**. Submit `sigmoid(z/T)` = p(AIGC); decode failures to an error log, never a silent 0.5.
+Temperature + one-scalar logit bias (α) fitted on **our own** deployment-mixture calibration split (equal clean/transformed buckets). One threshold frozen on clean dev (max bAcc s.t. FPR ≤ 5%), **never refit per transform**. Submit `sigmoid((z + α)/T)` = p(AIGC); decode failures to an error log, never a silent 0.5.
 **C2 note:** the calibration paper's unsupervised variant needs only 10 unlabeled images — using protected images for it would still be "calibration on the protected set" → banned. Dev mixture only.
 
 ### D8. Ensemble: earn membership, don't assume it
