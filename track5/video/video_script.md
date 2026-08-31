@@ -237,10 +237,9 @@
 1. ✅ **A 段三联图 —— 已完成**:`work/video_assets/A_transform_triptych.png`
    重生成命令留在 git 里;源图 `B_fn_magnet/flux_dev/001.png` 是我们自研生成的,无版权风险。
 2. ✅ **标题卡与收尾卡 —— 已完成**:`track5/video/card_opening.png`、`card_closing.png`(均 1920×1080)
-   队名 **team skipskipskip** 已由 Bao Ning 于本轮口头确认,并渲进
-   `work/video_assets/card_opening_named.png`(成片用的是这张,不是原卡)。
-   ⚠️ 该确认是口头的,**仓库里仍没有独立来源**。提交前请对一遍 Devpost 注册页的写法;
-   若不一致,重渲此卡再重出 A 段(命令见 `work/build_frames.py` 同目录说明)。
+   队名 **team skipskipskip** 渲进 `work/video_assets/card_opening_named.png`
+   (成片用的是这张,不是原卡)。
+   ✅ 已于 2026-09-01 对照 Devpost 注册页核准,写法一致 —— 该队名不再仅凭记忆或口头确认。
 3. ⚠️ 全片图像**只能用集合 B(自研生成)或自有照片**。不要用网上找的 AI 图 —— 题面禁止未授权第三方版权内容。
 
 ---
@@ -260,12 +259,21 @@ public 状态已验证:YouTube oEmbed 接口(`/oembed?url=...`)对私享与未�
 
 - [x] 总时长 **≤ 3:00** —— 实测 2:34.9
 - [x] 上传 YouTube 且设为 **public**(不是 unlisted)—— 已用 oEmbed 验证
-- [ ] 链接填进 Devpost 描述
 - [x] 全片**没有受保护集**的图像或数字 —— 演示图取自集合 B(自研生成)
 - [x] 没有未授权的第三方商标/版权素材
-- [ ] 手机上再看一遍,确认终端字能看清
+- [x] 手机上看过,终端字能认出
       (成片为 720p 原生,非 1080p:包录素材本身是 720p,升采样会糊掉 `pred` 与 hash)
-- [ ] 开场卡队名与 Devpost 注册页一致(见上方 § 素材第 2 条)
+- [x] 开场卡队名与 Devpost 注册页一致 —— 2026-09-01 核准
+
+**唯一未完成项 —— Devpost 提交(计划 2026-09-01 上午):**
+
+- [ ] 链接贴进 Devpost 项目编辑页的 **Video demo link** 字段(不是描述正文):
+      `https://youtu.be/HoKdBR0hjNc`
+      该字段只接受 YouTube / Vimeo / Youku,填其他会报
+      "Must be a valid YouTube, Vimeo, or Youku url"。
+- [ ] **点 Submit,把项目关联到 Track 5 比赛。** 只保存是草稿,截止后不算参赛 —— 这是两步。
+- [ ] (建议)描述正文 About the project 里也放一条明文视频链接与仓库链接,
+      供不看内嵌播放器、直接读正文的评委。
 
 ---
 
