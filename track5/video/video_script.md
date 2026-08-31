@@ -245,14 +245,26 @@
 
 ---
 
+## § 已发布
+
+**https://youtu.be/HoKdBR0hjNc** — 2026-08-31 发布。
+
+标题:`Robust Detection of AI-Generated Images Under Real-World Transforms — TikTok TechJam 2026 Track 5`
+
+public 状态已验证:YouTube oEmbed 接口(`/oembed?url=...`)对私享与未列出视频返回 401,
+该视频返回了完整元数据,故为公开可见。
+
+---
+
 ## § 提交前检查清单
 
-- [ ] 总时长 **≤ 3:00**(掐表,不估)
-- [ ] 上传 YouTube 且设为 **public**(不是 unlisted)
+- [x] 总时长 **≤ 3:00** —— 实测 2:34.9
+- [x] 上传 YouTube 且设为 **public**(不是 unlisted)—— 已用 oEmbed 验证
 - [ ] 链接填进 Devpost 描述
-- [ ] 全片**没有受保护集**的图像或数字
-- [ ] 没有未授权的第三方商标/版权素材
-- [ ] 1080p 下终端字能看清(上传后在手机上再看一遍)
+- [x] 全片**没有受保护集**的图像或数字 —— 演示图取自集合 B(自研生成)
+- [x] 没有未授权的第三方商标/版权素材
+- [ ] 手机上再看一遍,确认终端字能看清
+      (成片为 720p 原生,非 1080p:包录素材本身是 720p,升采样会糊掉 `pred` 与 hash)
 - [ ] 开场卡队名与 Devpost 注册页一致(见上方 § 素材第 2 条)
 
 ---
