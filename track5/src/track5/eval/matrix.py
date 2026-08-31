@@ -97,9 +97,16 @@ def run_matrix(manifest_df, score_fn, atoms, cache_dir, global_seed: int,
         paths = list(arows["cache_path"])
         labels = arows["label"].to_numpy(dtype=int)
         scores = np.asarray(score_fn(paths), dtype=np.float64)
-        item_frames.append(pd.DataFrame({
+        frame = pd.DataFrame({
             "path": arows["path"].to_numpy(), "label": labels,
-            "score": scores, "condition": atom}))
+            "score": scores, "condition": atom})
+        # Downstream analysis groups errors by family; ood_excluded.parquet
+        # names the column "family", the training-side manifests
+        # "generator_family". Emit one canonical name when either exists.
+        fam = next((c for c in ("generator_family", "family") if c in arows), None)
+        if fam is not None:
+            frame["generator_family"] = arows[fam].to_numpy()
+        item_frames.append(frame)
         m = all_metrics(labels, scores, threshold)
         if atom == "clean":
             clean_bacc = m["bacc"]

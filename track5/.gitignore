@@ -18,3 +18,4 @@ data/manifests/*.parquet
 !data/manifests/*.receipt.json
 # Transient run logs
 *.log
+demo_images*/

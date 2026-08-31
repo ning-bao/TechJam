@@ -93,6 +93,7 @@ def test_run_matrix_csv_and_cache(tmp_path, monkeypatch):
         "sha256": [f"h{i:03d}" for i in range(n)],
         "path": [f"p{i}" for i in range(n)],
         "label": [i % 2 for i in range(n)],
+        "generator_family": [f"fam{i % 3}" for i in range(n)],
     })
     score_fn = lambda paths: rng.uniform(0, 1, len(paths))
     meta = {"data_root": ".", "model_hash": "m" * 12, "config_hash": "c" * 12,
@@ -107,12 +108,14 @@ def test_run_matrix_csv_and_cache(tmp_path, monkeypatch):
     first = calls["transform"]
     assert first == 2 * n
     items = pd.read_parquet(M.items_path(out))
-    assert list(items.columns) == ["path", "label", "score", "condition"]
+    assert list(items.columns) == ["path", "label", "score", "condition",
+                                   "generator_family"]
     assert len(items) == 2 * n
     assert set(items["condition"]) == {"clean", "jpeg_30"}
-    joined = items.merge(manifest[["path", "label"]], on="path",
-                         suffixes=("", "_manifest"))
+    joined = items.merge(manifest[["path", "label", "generator_family"]],
+                         on="path", suffixes=("", "_manifest"))
     assert (joined["label"] == joined["label_manifest"]).all()
+    assert (joined["generator_family"] == joined["generator_family_manifest"]).all()
     M.run_matrix(manifest, score_fn, ["jpeg_30", "clean"], tmp_path / "cache",
                  17, 0.5, out, meta)
     assert calls["transform"] == first  # cache reused, no recompute
