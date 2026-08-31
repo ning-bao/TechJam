@@ -4,6 +4,9 @@ TikTok TechJam 2026, Track 5. A fine-tuned vision transformer that decides
 whether an image is AI-generated, and keeps deciding correctly after the image
 has been JPEG-compressed, blurred, resized, noised, colour-jittered or cropped.
 
+**Demo video (2:35):** https://youtu.be/HoKdBR0hjNc — a real inference run on a
+real terminal, then the evidence behind each claim below.
+
 **Headline, on a generator the model has never seen** (the organiser's
 demonstration benchmark: COCO val2017 reals vs DALL·E 3 Advanced fakes, with the
 entire DALL·E family — 64,482 images — denylisted from training):
@@ -178,7 +181,7 @@ deleting the artifacts before submission.
 |---|---|---|
 | 1 | Project description | Devpost |
 | 2 | Public repository + scoring script | this repo, [track5/src/predict.py](track5/src/predict.py) |
-| 3 | Demo video | linked from Devpost |
+| 3 | Demo video | [youtu.be/HoKdBR0hjNc](https://youtu.be/HoKdBR0hjNc) · script and build scripts in [track5/video/](track5/video/) |
 | 4 | Robustness evaluation summary | [track5/reports/robustness_summary.md](track5/reports/robustness_summary.md) |
 | 5 | Error analysis note | [track5/reports/error_analysis.md](track5/reports/error_analysis.md) |
 
