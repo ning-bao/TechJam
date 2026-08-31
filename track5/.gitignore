@@ -19,3 +19,4 @@ data/manifests/*.parquet
 # Transient run logs
 *.log
 demo_images*/
+video/raw/
